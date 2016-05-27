@@ -32,6 +32,8 @@ public class MojProfilProdavac extends javax.swing.JPanel {
         KorisnickoIme.setText(informacije.get(4));
         Lozinka.setText(informacije.get(5));
         Prezime.setText(informacije.get(6));
+        
+        
 
     }
 

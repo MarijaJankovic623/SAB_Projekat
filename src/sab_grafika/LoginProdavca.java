@@ -96,8 +96,12 @@ public class LoginProdavca extends javax.swing.JPanel {
             Prodavac.setID(Prodavac.dohvatiIDProdavca(this.KorisnickoIme.getText()));
             Prodavac.setUlogovan(true);
             this.Home.Switch(new PretragaApartmanaLokacija(this.Home));
-            //treha da se ode na pocetnu stranu kupca 
-            //neophodno je da izvrsimo disable svih dugmica u JFrame-u f
+            
+            
+            this.Home.getLogin().setEnabled(false);
+            this.Home.getRegistracija().setEnabled(false);
+            this.Home.getMojProfilKupac().setEnabled(false);
+            this.Home.getKupacB().setEnabled(false);
         } else {
             this.Home.Switch(new RegistracijaProdavca(this.Home));
         }

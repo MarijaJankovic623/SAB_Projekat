@@ -55,7 +55,7 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu4">
+        <Menu class="javax.swing.JMenu" name="MojProfil">
           <Properties>
             <Property name="text" type="java.lang.String" value="Moj profil"/>
           </Properties>
@@ -78,7 +78,7 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu5">
+        <Menu class="javax.swing.JMenu" name="ProdavacB">
           <Properties>
             <Property name="text" type="java.lang.String" value="Prodavac"/>
           </Properties>

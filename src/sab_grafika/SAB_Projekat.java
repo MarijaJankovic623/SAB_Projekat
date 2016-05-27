@@ -6,6 +6,10 @@
 package sab_grafika;
 
 import java.awt.CardLayout;
+import java.awt.Label;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import sab_implementacija.Kupac;
 import sab_implementacija.Prodavac;
@@ -43,10 +47,10 @@ public class SAB_Projekat extends javax.swing.JFrame {
         Registracija = new javax.swing.JMenu();
         RegistracijaKupac = new javax.swing.JMenuItem();
         RegistracijaProdavac = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
+        MojProfil = new javax.swing.JMenu();
         MojProfilKupac = new javax.swing.JMenuItem();
         MojProfilProdavac = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
+        ProdavacB = new javax.swing.JMenu();
         MojiApartmani = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
@@ -128,7 +132,7 @@ public class SAB_Projekat extends javax.swing.JFrame {
 
         jMenuBar1.add(Registracija);
 
-        jMenu4.setText("Moj profil");
+        MojProfil.setText("Moj profil");
 
         MojProfilKupac.setText("Kupac");
         MojProfilKupac.addActionListener(new java.awt.event.ActionListener() {
@@ -136,7 +140,7 @@ public class SAB_Projekat extends javax.swing.JFrame {
                 MojProfilKupacActionPerformed(evt);
             }
         });
-        jMenu4.add(MojProfilKupac);
+        MojProfil.add(MojProfilKupac);
 
         MojProfilProdavac.setText("Prodavac");
         MojProfilProdavac.addActionListener(new java.awt.event.ActionListener() {
@@ -144,11 +148,11 @@ public class SAB_Projekat extends javax.swing.JFrame {
                 MojProfilProdavacActionPerformed(evt);
             }
         });
-        jMenu4.add(MojProfilProdavac);
+        MojProfil.add(MojProfilProdavac);
 
-        jMenuBar1.add(jMenu4);
+        jMenuBar1.add(MojProfil);
 
-        jMenu5.setText("Prodavac");
+        ProdavacB.setText("Prodavac");
 
         MojiApartmani.setText("Moji apartmani");
         MojiApartmani.addActionListener(new java.awt.event.ActionListener() {
@@ -156,16 +160,16 @@ public class SAB_Projekat extends javax.swing.JFrame {
                 MojiApartmaniActionPerformed(evt);
             }
         });
-        jMenu5.add(MojiApartmani);
+        ProdavacB.add(MojiApartmani);
 
         jMenuItem6.setText("Moje rezervacije");
-        jMenu5.add(jMenuItem6);
+        ProdavacB.add(jMenuItem6);
 
         jMenuItem7.setText("Dodaj apartman");
-        jMenu5.add(jMenuItem7);
+        ProdavacB.add(jMenuItem7);
 
         jMenuItem8.setText("Dodaj sobu");
-        jMenu5.add(jMenuItem8);
+        ProdavacB.add(jMenuItem8);
 
         ApartmaniLokacijaProdavac.setText("Pretraga ");
         ApartmaniLokacijaProdavac.addActionListener(new java.awt.event.ActionListener() {
@@ -173,9 +177,9 @@ public class SAB_Projekat extends javax.swing.JFrame {
                 ApartmaniLokacijaProdavacActionPerformed(evt);
             }
         });
-        jMenu5.add(ApartmaniLokacijaProdavac);
+        ProdavacB.add(ApartmaniLokacijaProdavac);
 
-        jMenuBar1.add(jMenu5);
+        jMenuBar1.add(ProdavacB);
 
         KupacB.setText("Kupac");
 
@@ -299,6 +303,108 @@ public class SAB_Projekat extends javax.swing.JFrame {
         setVisible(true);
 
     }
+
+    public JMenuItem getApartmaniLokacijaKupac() {
+        return ApartmaniLokacijaKupac;
+    }
+
+    public JMenuItem getApartmaniLokacijaProdavac() {
+        return ApartmaniLokacijaProdavac;
+    }
+
+    public JPanel getHomePanel() {
+        return HomePanel;
+    }
+
+    public JMenu getKupacB() {
+        return KupacB;
+    }
+    
+        public JMenu getProdavacB() {
+        return ProdavacB;
+    }
+
+    public JMenu getLogin() {
+        return Login;
+    }
+
+    public JMenuItem getLoginKupac() {
+        return LoginKupac;
+    }
+
+    public JMenuItem getLoginProdavac() {
+        return LoginProdavac;
+    }
+
+    public JMenuItem getMojProfilKupac() {
+        return MojProfilKupac;
+    }
+
+    public JMenuItem getMojProfilProdavac() {
+        return MojProfilProdavac;
+    }
+
+    public JMenuItem getMojiApartmani() {
+        return MojiApartmani;
+    }
+
+    public JMenuItem getOdjava() {
+        return Odjava;
+    }
+
+    public JMenu getOdjavljivanje() {
+        return Odjavljivanje;
+    }
+
+    public JMenu getRegistracija() {
+        return Registracija;
+    }
+
+    public JMenuItem getRegistracijaKupac() {
+        return RegistracijaKupac;
+    }
+
+    public JMenuItem getRegistracijaProdavac() {
+        return RegistracijaProdavac;
+    }
+
+    public JMenu getjMenu4() {
+        return MojProfil;
+    }
+
+    public JMenu getjMenu5() {
+        return ProdavacB;
+    }
+
+    public JMenuBar getjMenuBar1() {
+        return jMenuBar1;
+    }
+
+    public JMenuItem getjMenuItem1() {
+        return jMenuItem1;
+    }
+
+    public JMenuItem getjMenuItem11() {
+        return jMenuItem11;
+    }
+
+    public JMenuItem getjMenuItem6() {
+        return jMenuItem6;
+    }
+
+    public JMenuItem getjMenuItem7() {
+        return jMenuItem7;
+    }
+
+    public JMenuItem getjMenuItem8() {
+        return jMenuItem8;
+    }
+
+    
+    
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem ApartmaniLokacijaKupac;
     private javax.swing.JMenuItem ApartmaniLokacijaProdavac;
@@ -307,16 +413,16 @@ public class SAB_Projekat extends javax.swing.JFrame {
     private javax.swing.JMenu Login;
     private javax.swing.JMenuItem LoginKupac;
     private javax.swing.JMenuItem LoginProdavac;
+    private javax.swing.JMenu MojProfil;
     private javax.swing.JMenuItem MojProfilKupac;
     private javax.swing.JMenuItem MojProfilProdavac;
     private javax.swing.JMenuItem MojiApartmani;
     private javax.swing.JMenuItem Odjava;
     private javax.swing.JMenu Odjavljivanje;
+    private javax.swing.JMenu ProdavacB;
     private javax.swing.JMenu Registracija;
     private javax.swing.JMenuItem RegistracijaKupac;
     private javax.swing.JMenuItem RegistracijaProdavac;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem11;

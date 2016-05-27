@@ -22,6 +22,7 @@ public class LoginKupca extends javax.swing.JPanel {
     public LoginKupca(SAB_Projekat Home) {
         initComponents();
         this.Home = Home;
+      
     }
 
     /**
@@ -97,8 +98,11 @@ public class LoginKupca extends javax.swing.JPanel {
             Kupac.setUlogovan(true);
 
             this.Home.Switch(new PretragaApartmanaLokacija(this.Home));
-            //treha da se ode na pocetnu stranu kupca 
-            //neophodno je da izvrsimo disable svih dugmica u JFrame-u f
+                
+            this.Home.getLogin().setEnabled(false);
+            this.Home.getRegistracija().setEnabled(false);
+            this.Home.getMojProfilProdavac().setEnabled(false);
+            this.Home.getProdavacB().setEnabled(false);
         } else {
             this.Home.Switch(new RegistracijaKupca(this.Home));
         }
