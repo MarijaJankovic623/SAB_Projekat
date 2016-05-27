@@ -155,7 +155,7 @@ public class PretragaApartmanaLokacija extends javax.swing.JPanel {
     }//GEN-LAST:event_ImeApartmanaActionPerformed
 
     private void DetaljiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DetaljiActionPerformed
-        Integer IDApartmana = Apartman.dohvatiIDApartmana(this.jTextPane1.getText());
+        Integer IDApartmana = Apartman.dohvatiIDApartmana(this.ImeApartmana.getText());
         this.jTextPane1.setText(IDApartmana + "");
         //this.Home.Switch(new ApartmanDetaljnoPanel(this.Home, IDApartman));
     }//GEN-LAST:event_DetaljiActionPerformed

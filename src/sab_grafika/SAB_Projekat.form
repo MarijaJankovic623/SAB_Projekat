@@ -83,10 +83,13 @@
             <Property name="text" type="java.lang.String" value="Prodavac"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
+            <MenuItem class="javax.swing.JMenuItem" name="MojiApartmani">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Moji apartmani"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MojiApartmaniActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
               <Properties>
@@ -103,9 +106,17 @@
                 <Property name="text" type="java.lang.String" value="Dodaj sobu"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="ApartmaniLokacijaProdavac">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Pretraga "/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ApartmaniLokacijaProdavacActionPerformed"/>
+              </Events>
+            </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu3">
+        <Menu class="javax.swing.JMenu" name="KupacB">
           <Properties>
             <Property name="text" type="java.lang.String" value="Kupac"/>
           </Properties>
@@ -114,6 +125,14 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Moje rezervacije"/>
               </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="ApartmaniLokacijaKupac">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Pretraga"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ApartmaniLokacijaKupacActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

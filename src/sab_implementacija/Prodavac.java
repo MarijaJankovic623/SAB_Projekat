@@ -136,7 +136,7 @@ public class Prodavac {
         return IDProdavac;
     }
 
-    public static List<Apartman> pregledApartmana(Integer IDProdavac) {
+    public static List<Apartman> pregledApartmana() {
         Connection con = DB.connection;
         List<Apartman> listaApartmana = new LinkedList<Apartman>();
 
@@ -146,7 +146,7 @@ public class Prodavac {
 
             PreparedStatement stmt = con.prepareStatement(SQLStm);
 
-            stmt.setInt(1, IDProdavac);
+            stmt.setInt(1, ID);
 
             ResultSet rezultat = stmt.executeQuery();
 

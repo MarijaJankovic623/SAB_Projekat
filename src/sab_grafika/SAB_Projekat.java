@@ -47,12 +47,14 @@ public class SAB_Projekat extends javax.swing.JFrame {
         MojProfilKupac = new javax.swing.JMenuItem();
         MojProfilProdavac = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        MojiApartmani = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        ApartmaniLokacijaProdavac = new javax.swing.JMenuItem();
+        KupacB = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
+        ApartmaniLokacijaKupac = new javax.swing.JMenuItem();
         Odjavljivanje = new javax.swing.JMenu();
         Odjava = new javax.swing.JMenuItem();
 
@@ -148,8 +150,13 @@ public class SAB_Projekat extends javax.swing.JFrame {
 
         jMenu5.setText("Prodavac");
 
-        jMenuItem5.setText("Moji apartmani");
-        jMenu5.add(jMenuItem5);
+        MojiApartmani.setText("Moji apartmani");
+        MojiApartmani.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MojiApartmaniActionPerformed(evt);
+            }
+        });
+        jMenu5.add(MojiApartmani);
 
         jMenuItem6.setText("Moje rezervacije");
         jMenu5.add(jMenuItem6);
@@ -160,14 +167,30 @@ public class SAB_Projekat extends javax.swing.JFrame {
         jMenuItem8.setText("Dodaj sobu");
         jMenu5.add(jMenuItem8);
 
+        ApartmaniLokacijaProdavac.setText("Pretraga ");
+        ApartmaniLokacijaProdavac.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ApartmaniLokacijaProdavacActionPerformed(evt);
+            }
+        });
+        jMenu5.add(ApartmaniLokacijaProdavac);
+
         jMenuBar1.add(jMenu5);
 
-        jMenu3.setText("Kupac");
+        KupacB.setText("Kupac");
 
         jMenuItem11.setText("Moje rezervacije");
-        jMenu3.add(jMenuItem11);
+        KupacB.add(jMenuItem11);
 
-        jMenuBar1.add(jMenu3);
+        ApartmaniLokacijaKupac.setText("Pretraga");
+        ApartmaniLokacijaKupac.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ApartmaniLokacijaKupacActionPerformed(evt);
+            }
+        });
+        KupacB.add(ApartmaniLokacijaKupac);
+
+        jMenuBar1.add(KupacB);
 
         Odjavljivanje.setText("Odjavi se");
 
@@ -219,6 +242,18 @@ public class SAB_Projekat extends javax.swing.JFrame {
         this.Switch(new Odjavljivanje());
     }//GEN-LAST:event_OdjavaActionPerformed
 
+    private void MojiApartmaniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MojiApartmaniActionPerformed
+        this.Switch(new PretragaApartmanaProdavac(this));
+    }//GEN-LAST:event_MojiApartmaniActionPerformed
+
+    private void ApartmaniLokacijaProdavacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApartmaniLokacijaProdavacActionPerformed
+        this.Switch(new PretragaApartmanaLokacija(this));
+    }//GEN-LAST:event_ApartmaniLokacijaProdavacActionPerformed
+
+    private void ApartmaniLokacijaKupacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApartmaniLokacijaKupacActionPerformed
+        this.Switch(new PretragaApartmanaLokacija(this));
+    }//GEN-LAST:event_ApartmaniLokacijaKupacActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -265,24 +300,26 @@ public class SAB_Projekat extends javax.swing.JFrame {
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem ApartmaniLokacijaKupac;
+    private javax.swing.JMenuItem ApartmaniLokacijaProdavac;
     private javax.swing.JPanel HomePanel;
+    private javax.swing.JMenu KupacB;
     private javax.swing.JMenu Login;
     private javax.swing.JMenuItem LoginKupac;
     private javax.swing.JMenuItem LoginProdavac;
     private javax.swing.JMenuItem MojProfilKupac;
     private javax.swing.JMenuItem MojProfilProdavac;
+    private javax.swing.JMenuItem MojiApartmani;
     private javax.swing.JMenuItem Odjava;
     private javax.swing.JMenu Odjavljivanje;
     private javax.swing.JMenu Registracija;
     private javax.swing.JMenuItem RegistracijaKupac;
     private javax.swing.JMenuItem RegistracijaProdavac;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;

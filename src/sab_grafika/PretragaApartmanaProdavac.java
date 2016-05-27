@@ -10,6 +10,7 @@ import java.util.List;
 import javax.swing.ScrollPaneLayout;
 import sab_implementacija.Apartman;
 import sab_implementacija.Kupac;
+import sab_implementacija.Prodavac;
 
 /**
  *
@@ -25,6 +26,17 @@ public class PretragaApartmanaProdavac extends javax.swing.JPanel {
     public PretragaApartmanaProdavac(SAB_Projekat Home) {
         initComponents();
         this.Home = Home;
+
+        List<Apartman> apartmani = null;
+
+        apartmani = Prodavac.pregledApartmana();
+
+        String ispis = "";
+        for (int i = 0; i < apartmani.size(); i++) {
+            ispis += "Naziv:    " + apartmani.get(i).getNaziv() + "    Adresa:    " + apartmani.get(i).getUlicaIBroj() + "\n";
+
+        }
+        this.jTextPane1.setText(Prodavac.getID()+ "");        this.jTextPane1.setText(ispis);
     }
 
     /**
@@ -36,31 +48,11 @@ public class PretragaApartmanaProdavac extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Grad = new javax.swing.JTextField();
-        Drzava = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        Pretrazi = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
         ImeApartmana = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         Detalji = new javax.swing.JButton();
-
-        Grad.setText("jTextField1");
-
-        Drzava.setText("jTextField2");
-
-        jLabel1.setText("Grad");
-
-        jLabel2.setText("Drzava");
-
-        Pretrazi.setText("Pretrazi");
-        Pretrazi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PretraziActionPerformed(evt);
-            }
-        });
 
         jScrollPane1.setViewportView(jTextPane1);
 
@@ -84,90 +76,54 @@ public class PretragaApartmanaProdavac extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(55, 55, 55)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Pretrazi)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(Drzava, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
-                                .addComponent(Grad))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(46, 46, 46)
+                                .addComponent(ImeApartmana, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(148, 148, 148)
+                                .addComponent(jLabel3)))
+                        .addGap(0, 34, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(ImeApartmana, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(148, 148, 148)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Detalji)
-                            .addComponent(jLabel3))))
-                .addContainerGap(40, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(jScrollPane1)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Detalji)
+                .addGap(152, 152, 152))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Grad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Drzava, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addComponent(Pretrazi)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(ImeApartmana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Detalji)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void PretraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PretraziActionPerformed
-        List<Apartman> apartmani = null;
-
-        if (this.Grad.getText() == "") {
-            apartmani = Apartman.pregledApartmanaDrzava(this.Drzava.getText());
-        } else {
-            apartmani = Apartman.pregledApartmanaDrzavaGrad(this.Drzava.getText(), this.Grad.getText());
-        }
-        String ispis = "";
-        for (int i = 0; i < apartmani.size(); i++) {
-            ispis += "Naziv:    " + apartmani.get(i).getNaziv() + "    Adresa:    " + apartmani.get(i).getUlicaIBroj() + "\n";
-
-        }
-        this.jTextPane1.setText(ispis);
-
-    }//GEN-LAST:event_PretraziActionPerformed
 
     private void ImeApartmanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImeApartmanaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ImeApartmanaActionPerformed
 
     private void DetaljiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DetaljiActionPerformed
-        Integer IDApartmana = Apartman.dohvatiIDApartmana(this.jTextPane1.getText());
+        Integer IDApartmana = Apartman.dohvatiIDApartmana(this.ImeApartmana.getText());
         this.jTextPane1.setText(IDApartmana + "");
         //this.Home.Switch(new ApartmanDetaljnoPanel(this.Home, IDApartman));
     }//GEN-LAST:event_DetaljiActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Detalji;
-    private javax.swing.JTextField Drzava;
-    private javax.swing.JTextField Grad;
     private javax.swing.JTextField ImeApartmana;
-    private javax.swing.JButton Pretrazi;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextPane jTextPane1;
