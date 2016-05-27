@@ -5,6 +5,7 @@
  */
 package sab_grafika;
 
+import java.util.List;
 import javax.swing.JFrame;
 import sab_implementacija.Kupac;
 import sab_implementacija.Prodavac;
@@ -23,6 +24,14 @@ public class MojProfilProdavac extends javax.swing.JPanel {
     public MojProfilProdavac(SAB_Projekat Home) {
         initComponents();
         this.Home = Home;
+                List<String> informacije = Prodavac.dohvatiProdavca();
+        POS.setText(informacije.get(0));
+        BrojTelefona.setText(informacije.get(1));
+        Email.setText(informacije.get(2));
+        Ime.setText(informacije.get(3));
+        KorisnickoIme.setText(informacije.get(4));
+        Lozinka.setText(informacije.get(5));
+        Prezime.setText(informacije.get(6));
 
     }
 

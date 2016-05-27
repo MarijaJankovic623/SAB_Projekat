@@ -93,7 +93,7 @@ public class LoginKupca extends javax.swing.JPanel {
 
     private void PrijavaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrijavaActionPerformed
         if (Kupac.prijavljivanjeKupca(this.KorisnickoIme.getText(), this.Lozinka.getText())) {
-            Kupac.setID(Kupac.dohvatiIDProdavca(this.KorisnickoIme.getText()));
+            Kupac.setID(Kupac.dohvatiIDKupca(this.KorisnickoIme.getText()));
             Kupac.setUlogovan(true);
 
             this.Home.Switch(new PretragaApartmanaLokacija(this.Home));

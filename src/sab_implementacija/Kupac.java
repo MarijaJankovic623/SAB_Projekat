@@ -40,7 +40,7 @@ public class Kupac {
         Kupac.ulogovan = ulogovan;
     }
 
-    public static Integer dohvatiIDProdavca(String korisnickoIme) {
+    public static Integer dohvatiIDKupca(String korisnickoIme) {
 
         Connection con = DB.connection;
         Integer IDKupac = 0;
@@ -64,6 +64,38 @@ public class Kupac {
         return IDKupac;
     }
 
+    public static List<String> dohvatiKupca() {
+        List<String> informacije = new LinkedList<String>();
+        Connection con = DB.connection;
+        try {
+            String SQLStm = "SELECT * FROM Kupac WHERE IDKupac = ?";
+            PreparedStatement stmt = con.prepareStatement(SQLStm);
+            stmt.setInt(1, ID);
+
+            ResultSet rezultat = stmt.executeQuery();
+
+            while (rezultat.next()) {
+                informacije.add(rezultat.getString("BrKreditneKartice"));
+                  informacije.add(rezultat.getString("BrojTelefona"));
+                   informacije.add(rezultat.getString("EMail"));
+                informacije.add(rezultat.getString("KorisnickoIme"));
+                informacije.add(rezultat.getString("Lozinka"));
+              
+               
+                informacije.add(rezultat.getString("Ime"));
+                informacije.add(rezultat.getString("Prezime"));
+                
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Prodavac.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
+
+        return informacije;
+    }
+
     public static boolean registracijaKupca(String korisnickoIme, String lozinka, String EMail, String BrojTelefona, String Ime, String Prezime, String BrKreditneKartice) {
         Connection con = DB.connection;
 
@@ -84,7 +116,8 @@ public class Kupac {
             stmt.execute();
 
         } catch (SQLException ex) {
-            Logger.getLogger(Prodavac.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Prodavac.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
         return true;
     }
@@ -105,10 +138,12 @@ public class Kupac {
 
             if (!stmt.getResultSet().next()) {
                 return false;
+
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(Prodavac.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Prodavac.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
 
         return true;
@@ -135,7 +170,8 @@ public class Kupac {
             stmt.execute();
 
         } catch (SQLException ex) {
-            Logger.getLogger(Prodavac.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Prodavac.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
         return true;
     }
@@ -158,7 +194,8 @@ public class Kupac {
             stmt.execute();
 
         } catch (SQLException ex) {
-            Logger.getLogger(Prodavac.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Prodavac.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
         return true;
 
@@ -183,7 +220,8 @@ public class Kupac {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(Prodavac.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Prodavac.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
         return listaSoba;
 

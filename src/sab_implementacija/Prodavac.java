@@ -135,6 +135,39 @@ public class Prodavac {
 
         return IDProdavac;
     }
+    
+    
+    public static List<String> dohvatiProdavca() {
+        List<String> informacije = new LinkedList<String>();
+        Connection con = DB.connection;
+        try {
+            String SQLStm = "SELECT * FROM Prodavac WHERE IDProdavac = ?";
+            PreparedStatement stmt = con.prepareStatement(SQLStm);
+            stmt.setInt(1, ID);
+
+            ResultSet rezultat = stmt.executeQuery();
+
+            while (rezultat.next()) {
+                informacije.add(rezultat.getString("POS"));
+                  informacije.add(rezultat.getString("BrojTelefona"));
+                   informacije.add(rezultat.getString("EMail"));
+                informacije.add(rezultat.getString("KorisnickoIme"));
+                informacije.add(rezultat.getString("Lozinka"));
+              
+               
+                informacije.add(rezultat.getString("Ime"));
+                informacije.add(rezultat.getString("Prezime"));
+                
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Prodavac.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
+
+        return informacije;
+    }
 
     public static List<Apartman> pregledApartmana() {
         Connection con = DB.connection;
