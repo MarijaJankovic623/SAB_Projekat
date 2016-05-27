@@ -268,7 +268,7 @@ public class Prodavac {
         return listaSoba;
     }
 
-    public static List<Rezervacija> pregledRezervacijaProdavac(Integer IDProdavac) {
+    public static List<Rezervacija> pregledRezervacijaProdavac() {
         Connection con = DB.connection;
         List<Rezervacija> listaSoba = new LinkedList<Rezervacija>();
 
@@ -276,7 +276,7 @@ public class Prodavac {
 
             CallableStatement cstmt = con.prepareCall("{CALL prelistavanjeRezervacijaProdavac(?)}");
 
-            cstmt.setInt(1, IDProdavac);
+            cstmt.setInt(1, ID);
 
             ResultSet rezultat = cstmt.executeQuery();
 

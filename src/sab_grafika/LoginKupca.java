@@ -98,11 +98,17 @@ public class LoginKupca extends javax.swing.JPanel {
             Kupac.setUlogovan(true);
 
             this.Home.Switch(new PretragaApartmanaLokacija(this.Home));
-                
-            this.Home.getLogin().setEnabled(false);
-            this.Home.getRegistracija().setEnabled(false);
-            this.Home.getMojProfilProdavac().setEnabled(false);
-            this.Home.getProdavacB().setEnabled(false);
+            
+            this.Home.getMojProfil().setVisible(true);
+            this.Home.getMojProfilKupac().setVisible(true);
+            this.Home.getKupacB().setVisible(true);
+            this.Home.getOdjavljivanje().setVisible(true);
+            
+            
+            this.Home.getLogin().setVisible(false);
+            this.Home.getRegistracija().setVisible(false);
+            this.Home.getMojProfilProdavac().setVisible(false);
+            this.Home.getProdavacB().setVisible(false);
         } else {
             this.Home.Switch(new RegistracijaKupca(this.Home));
         }

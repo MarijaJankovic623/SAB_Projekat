@@ -38,7 +38,7 @@ public class SAB_Projekat {
         //System.out.print( Prodavac.pregledSoba(1, "2013-01-01", "2013-02-01"));
         //Prodavac.RezervisiSobu(2, 2, "2013-03-02", "2013-04-02");Prodavac.RezervisiSobu(2, 2, "2013-03-02", "2013-04-02");
         //System.out.println( Prodavac.pregledRezervacijaProdavac(2));
-        System.out.println(Kupac.pregledRezervacijaKupac(2));
+        //System.out.println(Kupac.pregledRezervacijaKupac(2));
 
     }
 

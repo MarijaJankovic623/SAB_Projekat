@@ -13,7 +13,7 @@ import sab_implementacija.Prodavac;
  * @author Marija
  */
 public class LoginProdavca extends javax.swing.JPanel {
-
+    
     private SAB_Projekat Home;
 
     /**
@@ -97,11 +97,15 @@ public class LoginProdavca extends javax.swing.JPanel {
             Prodavac.setUlogovan(true);
             this.Home.Switch(new PretragaApartmanaLokacija(this.Home));
             
+            this.Home.getMojProfil().setVisible(true);
+            this.Home.getMojProfilProdavac().setVisible(true);
+            this.Home.getProdavacB().setVisible(true);
+            this.Home.getOdjavljivanje().setVisible(true);
             
-            this.Home.getLogin().setEnabled(false);
-            this.Home.getRegistracija().setEnabled(false);
-            this.Home.getMojProfilKupac().setEnabled(false);
-            this.Home.getKupacB().setEnabled(false);
+            this.Home.getLogin().setVisible(false);
+            this.Home.getRegistracija().setVisible(false);
+            this.Home.getMojProfilKupac().setVisible(false);
+            this.Home.getKupacB().setVisible(false);
         } else {
             this.Home.Switch(new RegistracijaProdavca(this.Home));
         }

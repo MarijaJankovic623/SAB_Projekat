@@ -5,17 +5,31 @@
  */
 package sab_grafika;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author Marija
  */
 public class Odjavljivanje extends javax.swing.JPanel {
-
+       private SAB_Projekat Home;
     /**
      * Creates new form Odjavljivanje
      */
-    public Odjavljivanje() {
+    public Odjavljivanje(SAB_Projekat Home) {
         initComponents();
+        this.Home = Home;
+        
+        this.Home.getLogin().setVisible(true);
+        this.Home.getRegistracija().setVisible(true);
+        
+   
+        this.Home.getMojProfil().setVisible(false);
+        this.Home.getProdavacB().setVisible(false);
+        this.Home.getKupacB().setVisible(false);
+        this.Home.getOdjavljivanje().setVisible(false);
+        
+        
     }
 
     /**

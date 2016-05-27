@@ -9,12 +9,12 @@ package sab_grafika;
  *
  * @author Marija
  */
-public class Rezervacija extends javax.swing.JPanel {
+public class RezervacijaPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form Apartman
      */
-    public Rezervacija() {
+    public RezervacijaPanel() {
         initComponents();
     }
 

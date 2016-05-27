@@ -107,7 +107,7 @@ public class Rezervacija {
 
     @Override
     public String toString() {
-        return "Rezervacija{" + "Ime=" + Ime + ", Prezime=" + Prezime + ", Username=" + Username + ", Email=" + Email + ", BrojTelefona=" + BrojTelefona + ", RdBRSobe=" + RdBRSobe + ", NazivApartmana=" + NazivApartmana + ", UlicaIBroj=" + UlicaIBroj + '}';
+        return   "Ime=" + Ime + ", Prezime=" + Prezime + ", Username=" + Username + ", Email=" + Email + ", BrojTelefona=" + BrojTelefona + ", RdBRSobe=" + RdBRSobe + ", NazivApartmana=" + NazivApartmana + ", UlicaIBroj=" + UlicaIBroj + "}\n";
     }
 
 }
