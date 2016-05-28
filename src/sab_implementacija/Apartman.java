@@ -25,6 +25,7 @@ public class Apartman {
     private String Grad;
     private String UlicaIBroj;
     private String Naziv;
+    private String Opis;
 
     public Apartman(Integer ID, String Drzava, String Grad, String UlicaIBroj, String Naziv) {
         this.IDApartman = ID;
@@ -78,7 +79,7 @@ public class Apartman {
             ResultSet rezultat = stmt.executeQuery();
             rezultat.next();
             apt = new Apartman(rezultat.getInt("IDApartman"), rezultat.getString("Drzava"), rezultat.getString("Grad"), rezultat.getString("UlicaIBroj"), rezultat.getString("Naziv"));
-
+            apt.setOpis(rezultat.getString("Opis"));
         } catch (SQLException ex) {
             Logger.getLogger(Prodavac.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -88,43 +89,6 @@ public class Apartman {
 
     public void setIDApartman(Integer IDApartman) {
         this.IDApartman = IDApartman;
-    }
-
-    public String getDrzava() {
-        return Drzava;
-    }
-
-    public void setDrzava(String Drzava) {
-        this.Drzava = Drzava;
-    }
-
-    public String getGrad() {
-        return Grad;
-    }
-
-    public void setGrad(String Grad) {
-        this.Grad = Grad;
-    }
-
-    public String getUlicaIBroj() {
-        return UlicaIBroj;
-    }
-
-    public void setUlicaIBroj(String UlicaIBroj) {
-        this.UlicaIBroj = UlicaIBroj;
-    }
-
-    public String getNaziv() {
-        return Naziv;
-    }
-
-    public void setNaziv(String Naziv) {
-        this.Naziv = Naziv;
-    }
-
-    @Override
-    public String toString() {
-        return "Apartman{" + "IDApartman=" + IDApartman + ", Drzava=" + Drzava + ", Grad=" + Grad + ", UlicaIBroj=" + UlicaIBroj + ", Naziv=" + Naziv + '}';
     }
 
     public static List<Apartman> pregledApartmanaDrzava(String Drzava) {
@@ -178,6 +142,75 @@ public class Apartman {
             Logger.getLogger(Prodavac.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listaApartmana;
+    }
+    
+    public static void izmeniApartman(Integer IDApartman, String Naziv, String Opis){
+    
+        Connection con = DB.connection;
+        Integer ID = 0;
+
+        String SQLStm = "UPDATE Apartman SET Naziv = ?, Opis = ? WHERE IDApartman = ?";
+
+        PreparedStatement stmt;
+        try {
+            stmt = con.prepareStatement(SQLStm);
+
+            stmt.setString(1, Naziv);
+            stmt.setString(2, Opis);
+            stmt.setInt(3, IDApartman);
+
+            stmt.execute();
+
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Prodavac.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    }
+
+    public String getOpis() {
+        return Opis;
+    }
+
+    public void setOpis(String Opis) {
+        this.Opis = Opis;
+    }
+
+    public String getDrzava() {
+        return Drzava;
+    }
+
+    public void setDrzava(String Drzava) {
+        this.Drzava = Drzava;
+    }
+
+    public String getGrad() {
+        return Grad;
+    }
+
+    public void setGrad(String Grad) {
+        this.Grad = Grad;
+    }
+
+    public String getUlicaIBroj() {
+        return UlicaIBroj;
+    }
+
+    public void setUlicaIBroj(String UlicaIBroj) {
+        this.UlicaIBroj = UlicaIBroj;
+    }
+
+    public String getNaziv() {
+        return Naziv;
+    }
+
+    public void setNaziv(String Naziv) {
+        this.Naziv = Naziv;
+    }
+
+    @Override
+    public String toString() {
+        return "Apartman{" + "IDApartman=" + IDApartman + ", Drzava=" + Drzava + ", Grad=" + Grad + ", UlicaIBroj=" + UlicaIBroj + ", Naziv=" + Naziv + '}';
     }
 
 }

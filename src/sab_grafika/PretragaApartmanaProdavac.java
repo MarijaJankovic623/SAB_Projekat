@@ -117,8 +117,8 @@ public class PretragaApartmanaProdavac extends javax.swing.JPanel {
 
     private void DetaljiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DetaljiActionPerformed
         Integer IDApartmana = Apartman.dohvatiIDApartmana(this.ImeApartmana.getText());
-        this.jTextPane1.setText(IDApartmana + "");
-        //this.Home.Switch(new ApartmanDetaljnoPanel(this.Home, IDApartman));
+
+        this.Home.Switch(new UredjivanjeApartmana(this.Home, IDApartmana));
     }//GEN-LAST:event_DetaljiActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

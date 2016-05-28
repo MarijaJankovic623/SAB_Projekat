@@ -27,17 +27,80 @@ public class Soba {
     private int RrBr;
     private String Opis;
     private int IDSoba;
+    private int zakljucana;
 
     public Soba(int IDSoba, int BrOsoba, int RrBr, String Opis) {
         this.IDSoba = IDSoba;
         this.BrOsoba = BrOsoba;
         this.RrBr = RrBr;
         this.Opis = Opis;
+        this.zakljucana = 0;
     }
-    
-    
-    public static List<Soba> slobodneSobe(Integer IDApartman,String DatumOd, String DatumDo){
-    Connection con = DB.connection;
+
+    public static void izmeniSobu(Integer IDSoba,  Integer RDB,Integer BrO, String Opis) {
+        Connection con = DB.connection;
+
+        String SQLStm = "UPDATE Soba SET BrOsoba = ?, RdBroj = ?, Opis = ? WHERE IDSoba = ?";
+
+        PreparedStatement stmt;
+        try {
+            stmt = con.prepareStatement(SQLStm);
+
+            stmt.setInt(1, BrO);
+            stmt.setInt(2, RDB);
+            stmt.setString(3, Opis);
+            stmt.setInt(4, IDSoba);
+
+            stmt.execute();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Prodavac.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public static void obrisiSobu(Integer IDSoba) {
+        Connection con = DB.connection;
+
+        String SQLStm = "DELETE  FROM Soba WHERE IDSoba = ?";
+
+        PreparedStatement stmt;
+        try {
+            stmt = con.prepareStatement(SQLStm);
+
+            stmt.setInt(1, IDSoba);
+            stmt.execute();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Prodavac.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public static void dodajSobu(Integer IDApartman,Integer BrO, Integer RDB, String Opis) {
+        Connection con = DB.connection;
+
+        String SQLStm = "INSERT INTO Soba(BrOsoba,RdBroj,Opis,IDApartman) VALUES(?,?,?,?)";
+
+        PreparedStatement stmt;
+        try {
+            stmt = con.prepareStatement(SQLStm);
+
+            stmt.setInt(1, BrO);
+            stmt.setInt(2, RDB);
+            stmt.setString(3, Opis);
+            stmt.setInt(4, IDApartman);
+
+            stmt.execute();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Prodavac.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public static List<Soba> slobodneSobe(Integer IDApartman, String DatumOd, String DatumDo) {
+        Connection con = DB.connection;
         List<Soba> listaSoba = new LinkedList<Soba>();
 
         try {
@@ -47,7 +110,6 @@ public class Soba {
             cstmt.setInt(1, IDApartman);
             cstmt.setString(2, DatumOd);
             cstmt.setString(3, DatumDo);
-            
 
             ResultSet rezultat = cstmt.executeQuery();
 
@@ -56,21 +118,85 @@ public class Soba {
                 listaSoba.add(soba);
 
             }
-            
-            
 
         } catch (SQLException ex) {
             Logger.getLogger(Prodavac.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return listaSoba;     
-    
-    
+        return listaSoba;
+
     }
-    
-    public static Integer  dohvatiIDSobe(Integer RedniBroj, Integer IDApartman){
-    
-    
-    
+
+    public static List<Soba> sobeApartman(Integer IDApartman) {
+        Connection con = DB.connection;
+        List<Soba> listaSoba = new LinkedList<Soba>();
+        PreparedStatement stmt;
+
+        String SQLStm = "SELECT * FROM Soba WHERE IDApartman = ? ";
+
+        try {
+            stmt = con.prepareStatement(SQLStm);
+
+            stmt.setInt(1, IDApartman);
+
+            ResultSet rezultat = stmt.executeQuery();
+            while (rezultat.next()) {
+                Soba soba = new Soba(rezultat.getInt("IDSoba"), rezultat.getInt("BrOsoba"), rezultat.getInt("RdBroj"), rezultat.getString("Opis"));
+                soba.zakljucana = rezultat.getInt("Zakljucana");
+                listaSoba.add(soba);
+            }
+            while (rezultat.next()) {
+                Soba soba = new Soba(rezultat.getInt("IDSoba"), rezultat.getInt("BrOsoba"), rezultat.getInt("RdBroj"), rezultat.getString("Opis"));
+                listaSoba.add(soba);
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Prodavac.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listaSoba;
+
+    }
+
+    public static void zakljucaj(Integer IDSoba) {
+        Connection con = DB.connection;
+
+        String SQLStm = "UPDATE Soba SET Zakljucana = 1 WHERE IDSoba = ?";
+
+        PreparedStatement stmt;
+        try {
+            stmt = con.prepareStatement(SQLStm);
+
+            stmt.setInt(1, IDSoba);
+
+            stmt.execute();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Prodavac.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public static void otkljucaj(Integer IDSoba) {
+        Connection con = DB.connection;
+
+        String SQLStm = "UPDATE Soba SET Zakljucana = 0 WHERE IDSoba = ?";
+
+        PreparedStatement stmt;
+        try {
+            stmt = con.prepareStatement(SQLStm);
+
+            stmt.setInt(1, IDSoba);
+
+            stmt.execute();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Prodavac.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public static Integer dohvatiIDSobe(Integer RedniBroj, Integer IDApartman) {
+
         Connection con = DB.connection;
         Integer ID = 0;
 
@@ -92,15 +218,10 @@ public class Soba {
         }
 
         return ID;
-    
 
-    
     }
-    
-    
-        
-    
-    public static void rezervisiSobu(Integer IDSoba, Integer IDKupac, String VremeOd,String VremeDo){
+
+    public static void rezervisiSobu(Integer IDSoba, Integer IDKupac, String VremeOd, String VremeDo) {
         Connection con = DB.connection;
         Integer ID = 0;
 
@@ -117,12 +238,10 @@ public class Soba {
 
             stmt.execute();
 
-
-
         } catch (SQLException ex) {
             Logger.getLogger(Prodavac.class.getName()).log(Level.SEVERE, null, ex);
         }
- 
+
     }
 
     public int getIDSoba() {
@@ -159,7 +278,7 @@ public class Soba {
 
     @Override
     public String toString() {
-        return "Soba{" + "BrOsoba=" + BrOsoba + ", RrBr=" + RrBr + ", Opis=" + Opis + ", IDSoba=" + IDSoba + '}';
+        return "Soba{" + "BrOsoba=" + BrOsoba + ", RrBr=" + RrBr + ", Opis=" + Opis + ", zakljucana=" + zakljucana + '}';
     }
 
 }
