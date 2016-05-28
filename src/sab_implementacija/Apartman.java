@@ -62,6 +62,30 @@ public class Apartman {
         return ID;
     }
 
+    public static Apartman dohvatiApartman(Integer IDApartman) {
+
+        Connection con = DB.connection;
+        Apartman apt = null;
+
+        String SQLStm = "SELECT * FROM Apartman WHERE IDApartman = ?";
+
+        PreparedStatement stmt;
+        try {
+            stmt = con.prepareStatement(SQLStm);
+
+            stmt.setInt(1, IDApartman);
+
+            ResultSet rezultat = stmt.executeQuery();
+            rezultat.next();
+            apt = new Apartman(rezultat.getInt("IDApartman"), rezultat.getString("Drzava"), rezultat.getString("Grad"), rezultat.getString("UlicaIBroj"), rezultat.getString("Naziv"));
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Prodavac.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return apt;
+    }
+
     public void setIDApartman(Integer IDApartman) {
         this.IDApartman = IDApartman;
     }

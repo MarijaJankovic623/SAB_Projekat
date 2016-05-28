@@ -6,25 +6,32 @@
 package sab_grafika;
 
 import java.awt.BorderLayout;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.ScrollPaneLayout;
 import sab_implementacija.Apartman;
 import sab_implementacija.Kupac;
+import sab_implementacija.Soba;
 
 /**
  *
  * @author Marija
  */
-public class PretragaApartmanaLokacija extends javax.swing.JPanel {
+public class RezervisanjeSobe extends javax.swing.JPanel {
 
     private SAB_Projekat Home;
+    private Integer IDApartman;
+    private String Od;
+    private String Do;
 
     /**
      * Creates new form Apartman
      */
-    public PretragaApartmanaLokacija(SAB_Projekat Home) {
+    public RezervisanjeSobe(SAB_Projekat Home, Integer IDApartman) {
         initComponents();
         this.Home = Home;
+        this.IDApartman = IDApartman;
     }
 
     /**
@@ -36,24 +43,20 @@ public class PretragaApartmanaLokacija extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Grad = new javax.swing.JTextField();
-        Drzava = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         Pretrazi = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
-        ImeApartmana = new javax.swing.JTextField();
+        RBSobe = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        Detalji = new javax.swing.JButton();
+        Rezervisi = new javax.swing.JButton();
+        VremeOd = new org.jdesktop.swingx.JXDatePicker();
+        VremeDo = new org.jdesktop.swingx.JXDatePicker();
 
-        Grad.setText("jTextField1");
+        jLabel1.setText("Vreme prijavljivanje");
 
-        Drzava.setText("jTextField2");
-
-        jLabel1.setText("Grad");
-
-        jLabel2.setText("Drzava");
+        jLabel2.setText("Vreme odjavljivanje");
 
         Pretrazi.setText("Pretrazi");
         Pretrazi.addActionListener(new java.awt.event.ActionListener() {
@@ -64,19 +67,19 @@ public class PretragaApartmanaLokacija extends javax.swing.JPanel {
 
         jScrollPane1.setViewportView(jTextPane1);
 
-        ImeApartmana.setText("jTextField1");
-        ImeApartmana.addActionListener(new java.awt.event.ActionListener() {
+        RBSobe.setText("jTextField1");
+        RBSobe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ImeApartmanaActionPerformed(evt);
+                RBSobeActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("Naziv apartmana");
+        jLabel3.setText("Unesite redni broj sobe");
 
-        Detalji.setText("Detaljnije");
-        Detalji.addActionListener(new java.awt.event.ActionListener() {
+        Rezervisi.setText("Rezervisi");
+        Rezervisi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DetaljiActionPerformed(evt);
+                RezervisiActionPerformed(evt);
             }
         });
 
@@ -88,6 +91,14 @@ public class PretragaApartmanaLokacija extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(RBSobe, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(148, 148, 148)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Rezervisi)
+                            .addComponent(jLabel3)))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -95,76 +106,68 @@ public class PretragaApartmanaLokacija extends javax.swing.JPanel {
                         .addGap(55, 55, 55)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Pretrazi)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(Drzava, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
-                                .addComponent(Grad))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(ImeApartmana, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(148, 148, 148)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Detalji)
-                            .addComponent(jLabel3))))
-                .addContainerGap(40, Short.MAX_VALUE))
+                            .addComponent(VremeOd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(VremeDo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Grad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(VremeOd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Drzava, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(VremeDo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(Pretrazi)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(ImeApartmana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(RBSobe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Detalji)
+                .addComponent(Rezervisi)
                 .addContainerGap(10, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void PretraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PretraziActionPerformed
-        List<Apartman> apartmani = null;
+        Apartman apt = Apartman.dohvatiApartman(IDApartman);
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        this.Od = formatter.format(this.VremeOd.getDate());
+        this.Do = formatter.format(this.VremeDo.getDate());
 
-        if (this.Grad.getText() == "") {
-            apartmani = Apartman.pregledApartmanaDrzava(this.Drzava.getText());
-        } else {
-            apartmani = Apartman.pregledApartmanaDrzavaGrad(this.Drzava.getText(), this.Grad.getText());
+        List<Soba> sobe = Soba.slobodneSobe(IDApartman, Od, Do);
+        String ispis = apt.toString();
+        for (int i = 0; i < sobe.size(); i++) {
+            ispis += sobe.get(i).toString() + "\n";
         }
-        String ispis = "";
-        for (int i = 0; i < apartmani.size(); i++) {
-            ispis += "Naziv:    " + apartmani.get(i).getNaziv() + "    Adresa:    " + apartmani.get(i).getUlicaIBroj() + "\n";
 
-        }
         this.jTextPane1.setText(ispis);
+
 
     }//GEN-LAST:event_PretraziActionPerformed
 
-    private void ImeApartmanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImeApartmanaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ImeApartmanaActionPerformed
+    private void RezervisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RezervisiActionPerformed
+        Integer IDSoba = Soba.dohvatiIDSobe(Integer.parseInt(this.RBSobe.getText()), IDApartman);
+        Soba.rezervisiSobu(IDSoba, Kupac.getID(),Od,Do );
+        this.Home.Switch(new PregledRezervacijaKupac(this.Home));
+    }//GEN-LAST:event_RezervisiActionPerformed
 
-    private void DetaljiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DetaljiActionPerformed
-        Integer IDApartmana = Apartman.dohvatiIDApartmana(this.ImeApartmana.getText());
-       this.Home.Switch(new RezervisanjeSobe(this.Home, IDApartmana));
-    }//GEN-LAST:event_DetaljiActionPerformed
+    private void RBSobeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBSobeActionPerformed
+
+    }//GEN-LAST:event_RBSobeActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Detalji;
-    private javax.swing.JTextField Drzava;
-    private javax.swing.JTextField Grad;
-    private javax.swing.JTextField ImeApartmana;
     private javax.swing.JButton Pretrazi;
+    private javax.swing.JTextField RBSobe;
+    private javax.swing.JButton Rezervisi;
+    private org.jdesktop.swingx.JXDatePicker VremeDo;
+    private org.jdesktop.swingx.JXDatePicker VremeOd;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

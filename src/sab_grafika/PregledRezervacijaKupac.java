@@ -34,7 +34,7 @@ public class PregledRezervacijaKupac extends javax.swing.JPanel {
 
         String ispis = "";
         for (int i = 0; i < rezervacije.size(); i++) {
-            ispis += rezervacije.get(0).toString() + "\n";
+            ispis += rezervacije.get(i).toString() + "\n";
         }
         this.jTextPane1.setText(Kupac.getID()+ "");        this.jTextPane1.setText(ispis);
     }
@@ -118,7 +118,7 @@ public class PregledRezervacijaKupac extends javax.swing.JPanel {
     private void DetaljiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DetaljiActionPerformed
         Integer IDApartmana = Apartman.dohvatiIDApartmana(this.ImeApartmana.getText());
         this.jTextPane1.setText(IDApartmana + "");
-        //this.Home.Switch(new ApartmanDetaljnoPanel(this.Home, IDApartman));
+        this.Home.Switch(new DetaljnoApartmanKupac(this.Home, IDApartmana));
     }//GEN-LAST:event_DetaljiActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
