@@ -25,14 +25,11 @@ public class SAB_Projekat extends javax.swing.JFrame {
      */
     public SAB_Projekat() {
         initComponents();
-        
-        
-     this.MojProfil.setVisible(false);
-     this.ProdavacB.setVisible(false);
-     this.KupacB.setVisible(false);
-     this.Odjavljivanje.setVisible(false);
 
-        
+        this.MojProfil.setVisible(false);
+        this.ProdavacB.setVisible(false);
+        this.KupacB.setVisible(false);
+        this.Odjavljivanje.setVisible(false);
 
     }
 
@@ -277,11 +274,11 @@ public class SAB_Projekat extends javax.swing.JFrame {
     }//GEN-LAST:event_ApartmaniLokacijaKupacActionPerformed
 
     private void MojeRezervacijeProdavacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MojeRezervacijeProdavacActionPerformed
-         this.Switch(new PregledRezervacijaProdavac(this));
+        this.Switch(new PregledRezervacijaProdavac(this));
     }//GEN-LAST:event_MojeRezervacijeProdavacActionPerformed
 
     private void MojeRezervacijeKupacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MojeRezervacijeKupacActionPerformed
-       this.Switch(new PregledRezervacijaKupac(this));
+        this.Switch(new PregledRezervacijaKupac(this));
     }//GEN-LAST:event_MojeRezervacijeKupacActionPerformed
 
     /**
@@ -345,8 +342,8 @@ public class SAB_Projekat extends javax.swing.JFrame {
     public JMenu getKupacB() {
         return KupacB;
     }
-    
-        public JMenu getProdavacB() {
+
+    public JMenu getProdavacB() {
         return ProdavacB;
     }
 
@@ -361,7 +358,8 @@ public class SAB_Projekat extends javax.swing.JFrame {
     public JMenuItem getLoginProdavac() {
         return LoginProdavac;
     }
-        public JMenu getMojProfil() {
+
+    public JMenu getMojProfil() {
         return MojProfil;
     }
 
@@ -429,11 +427,7 @@ public class SAB_Projekat extends javax.swing.JFrame {
         return jMenuItem8;
     }
 
-    
-    
-    
-    
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem ApartmaniLokacijaKupac;
     private javax.swing.JMenuItem ApartmaniLokacijaProdavac;
