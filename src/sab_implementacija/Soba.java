@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 public class Soba {
 
     private int BrOsoba;
-    private int RrBr;
+    private int RdBr;
     private String Opis;
     private int IDSoba;
     private int zakljucana;
@@ -32,12 +32,12 @@ public class Soba {
     public Soba(int IDSoba, int BrOsoba, int RrBr, String Opis) {
         this.IDSoba = IDSoba;
         this.BrOsoba = BrOsoba;
-        this.RrBr = RrBr;
+        this.RdBr = RrBr;
         this.Opis = Opis;
         this.zakljucana = 0;
     }
 
-    public static void izmeniSobu(Integer IDSoba,  Integer RDB,Integer BrO, String Opis) {
+    public static void izmeniSobu(Integer IDSoba, Integer RDB, Integer BrO, String Opis) {
         Connection con = DB.connection;
 
         String SQLStm = "UPDATE Soba SET BrOsoba = ?, RdBroj = ?, Opis = ? WHERE IDSoba = ?";
@@ -77,8 +77,30 @@ public class Soba {
 
     }
 
-    public static void dodajSobu(Integer IDApartman,Integer BrO, Integer RDB, String Opis) {
+    public static Integer moguceDodavanje(Integer RedniBroj) {
         Connection con = DB.connection;
+        Integer ID = 0;
+
+        CallableStatement cstmt = null;
+        try {
+            cstmt = con.prepareCall("{? = CALL novaSoba(?)}");
+            cstmt.registerOutParameter(1, java.sql.Types.INTEGER);
+            cstmt.setInt(2, RedniBroj);
+            cstmt.execute();
+            ID = cstmt.getInt(1);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Prodavac.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return ID;
+    }
+
+    public static boolean dodajSobu(Integer IDApartman, Integer BrO, Integer RDB, String Opis) {
+        Connection con = DB.connection;
+        if (moguceDodavanje(RDB) != 0) {
+            return false;
+        }
 
         String SQLStm = "INSERT INTO Soba(BrOsoba,RdBroj,Opis,IDApartman) VALUES(?,?,?,?)";
 
@@ -96,6 +118,7 @@ public class Soba {
         } catch (SQLException ex) {
             Logger.getLogger(Prodavac.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return true;
 
     }
 
@@ -210,8 +233,9 @@ public class Soba {
             stmt.setInt(2, IDApartman);
 
             ResultSet rezultat = stmt.executeQuery();
-            rezultat.next();
-            ID = rezultat.getInt("IDSoba");
+            if (rezultat.next()) {
+                ID = rezultat.getInt("IDSoba");
+            }
 
         } catch (SQLException ex) {
             Logger.getLogger(Prodavac.class.getName()).log(Level.SEVERE, null, ex);
@@ -261,11 +285,11 @@ public class Soba {
     }
 
     public int getRrBr() {
-        return RrBr;
+        return RdBr;
     }
 
     public void setRrBr(int RrBr) {
-        this.RrBr = RrBr;
+        this.RdBr = RrBr;
     }
 
     public String getOpis() {
@@ -278,7 +302,12 @@ public class Soba {
 
     @Override
     public String toString() {
-        return "Soba{" + "BrOsoba=" + BrOsoba + ", RrBr=" + RrBr + ", Opis=" + Opis + ", zakljucana=" + zakljucana + '}';
+        String zakljucanost = "Zakljucana";
+        if (zakljucana == 0) {
+            zakljucanost = "Otkljucana";
+        }
+        return "\n" + RdBr + "REDNI BROJ SOBE" + zakljucanost + "\nBROJ OSOBA U SOBI: " + BrOsoba + "\nOPIS: " + Opis;
+
     }
 
 }

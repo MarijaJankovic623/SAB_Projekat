@@ -54,6 +54,8 @@ public class RezervisanjeSobe extends javax.swing.JPanel {
         VremeOd = new org.jdesktop.swingx.JXDatePicker();
         VremeDo = new org.jdesktop.swingx.JXDatePicker();
 
+        setMinimumSize(new java.awt.Dimension(1600, 600));
+
         jLabel1.setText("Vreme prijavljivanje");
 
         jLabel2.setText("Vreme odjavljivanje");
@@ -67,7 +69,6 @@ public class RezervisanjeSobe extends javax.swing.JPanel {
 
         jScrollPane1.setViewportView(jTextPane1);
 
-        RBSobe.setText("jTextField1");
         RBSobe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RBSobeActionPerformed(evt);
@@ -108,7 +109,7 @@ public class RezervisanjeSobe extends javax.swing.JPanel {
                             .addComponent(Pretrazi)
                             .addComponent(VremeOd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(VremeDo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(1240, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,7 +132,7 @@ public class RezervisanjeSobe extends javax.swing.JPanel {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Rezervisi)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(198, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -154,8 +155,12 @@ public class RezervisanjeSobe extends javax.swing.JPanel {
 
     private void RezervisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RezervisiActionPerformed
         Integer IDSoba = Soba.dohvatiIDSobe(Integer.parseInt(this.RBSobe.getText()), IDApartman);
-        Soba.rezervisiSobu(IDSoba, Kupac.getID(),Od,Do );
-        this.Home.Switch(new PregledRezervacijaKupac(this.Home));
+        if (IDSoba != 0) {
+            Soba.rezervisiSobu(IDSoba, Kupac.getID(), Od, Do);
+            this.Home.Switch(new PregledRezervacijaKupac(this.Home));
+        } else {
+            this.RBSobe.setText("Niste uneli validan broj sobe");
+        }
     }//GEN-LAST:event_RezervisiActionPerformed
 
     private void RBSobeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBSobeActionPerformed

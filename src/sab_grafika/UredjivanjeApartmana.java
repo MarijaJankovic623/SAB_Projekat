@@ -25,10 +25,12 @@ public class UredjivanjeApartmana extends javax.swing.JPanel {
         this.Home = Home;
         this.IDApartman = IDApartman;
         Apartman apt = Apartman.dohvatiApartman(IDApartman);
+
         this.NazivApartmana.setText(apt.getNaziv());
         this.OpisApartmana.setText(apt.getOpis());
 
         String ispis = "Sobe:\n";
+        
 
         ispis += Soba.sobeApartman(IDApartman);
 
@@ -78,13 +80,9 @@ public class UredjivanjeApartmana extends javax.swing.JPanel {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        NazivApartmana.setText("jTextField1");
+        setMinimumSize(new java.awt.Dimension(1600, 600));
+        setPreferredSize(new java.awt.Dimension(1600, 600));
 
-        RedniBroj.setText("jTextField2");
-
-        BrojOsoba.setText("jTextField3");
-
-        RBSobe.setText("jTextField4");
         RBSobe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RBSobeActionPerformed(evt);
@@ -128,10 +126,6 @@ public class UredjivanjeApartmana extends javax.swing.JPanel {
                 ZakljucajActionPerformed(evt);
             }
         });
-
-        OpisSobe.setText("jTextField5");
-
-        OpisApartmana.setText("jTextField1");
 
         jLabel5.setText("Opis apartmana");
 
@@ -228,7 +222,7 @@ public class UredjivanjeApartmana extends javax.swing.JPanel {
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Dodaj)
                             .addComponent(Obrisi)
@@ -266,26 +260,35 @@ public class UredjivanjeApartmana extends javax.swing.JPanel {
 
     private void ZakljucajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ZakljucajActionPerformed
         Integer IDSoba = Soba.dohvatiIDSobe(Integer.parseInt(this.RBSobe.getText()), IDApartman);
-        Soba.zakljucaj(IDSoba);
         String ispis = "Sobe:\n";
+        if (IDSoba != 0) {
+            Soba.zakljucaj(IDSoba);
 
-        ispis += Soba.sobeApartman(IDApartman);
+            ispis += Soba.sobeApartman(IDApartman);
+        } else {
+            ispis = "Niste uneli validan redni broj sobe ";
+        }
 
         this.SobeApartman.setText(ispis);
     }//GEN-LAST:event_ZakljucajActionPerformed
 
     private void OtkljucajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OtkljucajActionPerformed
+
         Integer IDSoba = Soba.dohvatiIDSobe(Integer.parseInt(this.RBSobe.getText()), IDApartman);
-        Soba.otkljucaj(IDSoba);
-
         String ispis = "Sobe:\n";
+        if (IDSoba != 0) {
+            Soba.otkljucaj(IDSoba);
 
-        ispis += Soba.sobeApartman(IDApartman);
+            ispis += Soba.sobeApartman(IDApartman);
+        } else {
+            ispis = "Niste uneli validan redni broj sobe ";
+        }
 
         this.SobeApartman.setText(ispis);
     }//GEN-LAST:event_OtkljucajActionPerformed
 
     private void DodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DodajActionPerformed
+
         Soba.dodajSobu(IDApartman, Integer.parseInt(this.RedniBroj.getText()), Integer.parseInt(this.BrojOsoba.getText()), this.OpisSobe.getText());
         String ispis = "Sobe:\n";
 
@@ -295,21 +298,32 @@ public class UredjivanjeApartmana extends javax.swing.JPanel {
     }//GEN-LAST:event_DodajActionPerformed
 
     private void ObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ObrisiActionPerformed
-        Integer IDSoba = Soba.dohvatiIDSobe(Integer.parseInt(this.RBSobe.getText()), IDApartman);
-        Soba.obrisiSobu(IDSoba);
-        String ispis = "Sobe:\n";
 
-        ispis += Soba.sobeApartman(IDApartman);
+        Integer IDSoba = Soba.dohvatiIDSobe(Integer.parseInt(this.RBSobe.getText()), IDApartman);
+        String ispis = "Sobe:\n";
+        if (IDSoba != 0) {
+            Soba.obrisiSobu(IDSoba);
+
+            ispis += Soba.sobeApartman(IDApartman);
+        } else {
+            ispis = "Niste uneli validan redni broj sobe ";
+        }
 
         this.SobeApartman.setText(ispis);
     }//GEN-LAST:event_ObrisiActionPerformed
 
     private void IzmeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IzmeniActionPerformed
-        Integer IDSoba = Soba.dohvatiIDSobe(Integer.parseInt(this.RBSobe.getText()), IDApartman);
-        Soba.izmeniSobu(IDSoba, Integer.parseInt(this.RedniBroj.getText()), Integer.parseInt(this.BrojOsoba.getText()), this.OpisSobe.getText());
-        String ispis = "Sobe:\n";
 
-        ispis += Soba.sobeApartman(IDApartman);
+        Integer IDSoba = Soba.dohvatiIDSobe(Integer.parseInt(this.RBSobe.getText()), IDApartman);
+        String ispis = "Sobe:\n";
+        if (IDSoba != 0) {
+            Soba.izmeniSobu(IDSoba, Integer.parseInt(this.RedniBroj.getText()), Integer.parseInt(this.BrojOsoba.getText()), this.OpisSobe.getText());
+
+            ispis += Soba.sobeApartman(IDApartman);
+
+        } else {
+            ispis = "Niste uneli validan redni broj sobe ";
+        }
 
         this.SobeApartman.setText(ispis);
     }//GEN-LAST:event_IzmeniActionPerformed

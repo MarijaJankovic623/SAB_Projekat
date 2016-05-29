@@ -40,7 +40,7 @@ public class LoginKupca extends javax.swing.JPanel {
         Prijava = new javax.swing.JButton();
         Lozinka = new javax.swing.JPasswordField();
 
-        KorisnickoIme.setText("jTextField1");
+        setMinimumSize(new java.awt.Dimension(1600, 600));
 
         jLabel1.setText("Korisnicko ime");
 
@@ -52,8 +52,6 @@ public class LoginKupca extends javax.swing.JPanel {
                 PrijavaActionPerformed(evt);
             }
         });
-
-        Lozinka.setText("jPasswordField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -71,7 +69,7 @@ public class LoginKupca extends javax.swing.JPanel {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Lozinka, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                            .addComponent(Lozinka, javax.swing.GroupLayout.DEFAULT_SIZE, 1403, Short.MAX_VALUE)
                             .addComponent(KorisnickoIme))
                         .addGap(66, 66, 66))))
         );
@@ -88,7 +86,7 @@ public class LoginKupca extends javax.swing.JPanel {
                     .addComponent(Lozinka, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(59, 59, 59)
                 .addComponent(Prijava)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(377, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -96,6 +94,7 @@ public class LoginKupca extends javax.swing.JPanel {
         if (Kupac.prijavljivanjeKupca(this.KorisnickoIme.getText(), this.Lozinka.getText())) {
             Kupac.setID(Kupac.dohvatiIDKupca(this.KorisnickoIme.getText()));
             Kupac.setUlogovan(true);
+            Prodavac.setUlogovan(false);
 
             this.Home.Switch(new PretragaApartmanaLokacija(this.Home));
             

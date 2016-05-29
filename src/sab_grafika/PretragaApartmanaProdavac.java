@@ -27,16 +27,18 @@ public class PretragaApartmanaProdavac extends javax.swing.JPanel {
         initComponents();
         this.Home = Home;
 
-        List<Apartman> apartmani = null;
+        List<Apartman> apartmani = Prodavac.pregledApartmana();
 
-        apartmani = Prodavac.pregledApartmana();
+        if (apartmani.size()>0) {
 
-        String ispis = "";
-        for (int i = 0; i < apartmani.size(); i++) {
-            ispis += "Naziv:    " + apartmani.get(i).getNaziv() + "    Adresa:    " + apartmani.get(i).getUlicaIBroj() + "\n";
+            String ispis = "";
+            for (int i = 0; i < apartmani.size(); i++) {
+                ispis += "\n"+ apartmani.get(i).getIDApartman() +".  Naziv:    " + apartmani.get(i).getNaziv() + "    Adresa:    " + apartmani.get(i).getUlicaIBroj() + "\n";
 
+            }
+            this.jTextPane1.setText(Prodavac.getID() + "");
+            this.jTextPane1.setText(ispis);
         }
-        this.jTextPane1.setText(Prodavac.getID()+ "");        this.jTextPane1.setText(ispis);
     }
 
     /**
@@ -54,16 +56,17 @@ public class PretragaApartmanaProdavac extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         Detalji = new javax.swing.JButton();
 
+        setMinimumSize(new java.awt.Dimension(1600, 600));
+
         jScrollPane1.setViewportView(jTextPane1);
 
-        ImeApartmana.setText("jTextField1");
         ImeApartmana.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ImeApartmanaActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("Naziv apartmana");
+        jLabel3.setText("Unesite redni broj apartmana za kog zelite da vidite rezervacije");
 
         Detalji.setText("Detaljnije");
         Detalji.addActionListener(new java.awt.event.ActionListener() {
@@ -77,37 +80,32 @@ public class PretragaApartmanaProdavac extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(46, 46, 46)
-                                .addComponent(ImeApartmana, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(148, 148, 148)
-                                .addComponent(jLabel3)))
-                        .addGap(0, 34, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1)))
+                .addContainerGap()
+                .addComponent(jScrollPane1)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Detalji)
                 .addGap(152, 152, 152))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ImeApartmana, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addContainerGap(1061, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(ImeApartmana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Detalji)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ImeApartmana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(jLabel3)
+                .addGap(43, 43, 43))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -116,9 +114,16 @@ public class PretragaApartmanaProdavac extends javax.swing.JPanel {
     }//GEN-LAST:event_ImeApartmanaActionPerformed
 
     private void DetaljiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DetaljiActionPerformed
-        Integer IDApartmana = Apartman.dohvatiIDApartmana(this.ImeApartmana.getText());
-
+        Integer IDApartmana = Integer.parseInt(this.ImeApartmana.getText());
+        Apartman apt  = Apartman.dohvatiApartman(IDApartmana);
+        
+        if (apt == null) {
+            this.Home.Switch(new PretragaApartmanaProdavac(this.Home));
+            this.ImeApartmana.setText("Niste uneli validan redni broj apartmana");
+        }
+        else{
         this.Home.Switch(new UredjivanjeApartmana(this.Home, IDApartmana));
+        }
     }//GEN-LAST:event_DetaljiActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

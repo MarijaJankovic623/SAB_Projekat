@@ -10,6 +10,7 @@ import java.util.List;
 import javax.swing.ScrollPaneLayout;
 import sab_implementacija.Apartman;
 import sab_implementacija.Kupac;
+import sab_implementacija.Prodavac;
 
 /**
  *
@@ -47,9 +48,8 @@ public class PretragaApartmanaLokacija extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         Detalji = new javax.swing.JButton();
 
-        Grad.setText("jTextField1");
-
-        Drzava.setText("jTextField2");
+        setMinimumSize(new java.awt.Dimension(1600, 600));
+        setPreferredSize(new java.awt.Dimension(1600, 600));
 
         jLabel1.setText("Grad");
 
@@ -64,14 +64,13 @@ public class PretragaApartmanaLokacija extends javax.swing.JPanel {
 
         jScrollPane1.setViewportView(jTextPane1);
 
-        ImeApartmana.setText("jTextField1");
         ImeApartmana.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ImeApartmanaActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("Naziv apartmana");
+        jLabel3.setText("Unesite redni broj apartmana za kog zelite da vidite rezervacije");
 
         Detalji.setText("Detaljnije");
         Detalji.addActionListener(new java.awt.event.ActionListener() {
@@ -86,27 +85,28 @@ public class PretragaApartmanaLokacija extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(55, 55, 55)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Pretrazi)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(41, 41, 41)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addGap(55, 55, 55)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(Drzava, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
-                                .addComponent(Grad))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(ImeApartmana, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(148, 148, 148)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Detalji)
-                            .addComponent(jLabel3))))
-                .addContainerGap(40, Short.MAX_VALUE))
+                                .addComponent(Grad, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
+                                .addComponent(Drzava)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(131, 131, 131)
+                                    .addComponent(Pretrazi))))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(148, 148, 148)
+                            .addComponent(ImeApartmana, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(262, 262, 262)
+                            .addComponent(Detalji))))
+                .addContainerGap(1113, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,17 +119,17 @@ public class PretragaApartmanaLokacija extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Drzava, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addComponent(Pretrazi)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(ImeApartmana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Detalji)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addGap(39, 39, 39))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -142,10 +142,17 @@ public class PretragaApartmanaLokacija extends javax.swing.JPanel {
             apartmani = Apartman.pregledApartmanaDrzavaGrad(this.Drzava.getText(), this.Grad.getText());
         }
         String ispis = "";
-        for (int i = 0; i < apartmani.size(); i++) {
-            ispis += "Naziv:    " + apartmani.get(i).getNaziv() + "    Adresa:    " + apartmani.get(i).getUlicaIBroj() + "\n";
 
+        if (apartmani.size() > 0) {
+
+            for (int i = 0; i < apartmani.size(); i++) {
+                ispis += "\n" + apartmani.get(i).getIDApartman() + ". Naziv:    " + apartmani.get(i).getNaziv() + "    Adresa:    " + apartmani.get(i).getUlicaIBroj() + "\n";
+
+            }
+        } else {
+            ispis = "Nema apartmana na zeljenoj lokaciji";
         }
+
         this.jTextPane1.setText(ispis);
 
     }//GEN-LAST:event_PretraziActionPerformed
@@ -155,8 +162,22 @@ public class PretragaApartmanaLokacija extends javax.swing.JPanel {
     }//GEN-LAST:event_ImeApartmanaActionPerformed
 
     private void DetaljiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DetaljiActionPerformed
-        Integer IDApartmana = Apartman.dohvatiIDApartmana(this.ImeApartmana.getText());
-       this.Home.Switch(new RezervisanjeSobe(this.Home, IDApartmana));
+        Integer IDApartmana = Integer.parseInt(this.ImeApartmana.getText());
+        Apartman apt = Apartman.dohvatiApartman(IDApartmana);
+
+        if (apt != null) {
+
+            if (Kupac.getUlogovan()) {
+                this.Home.Switch(new RezervisanjeSobe(this.Home, IDApartmana));
+            }
+            if (Prodavac.getUlogovan()) {
+                this.Home.Switch(new DetaljnoApartmanProdavac(this.Home, IDApartmana));
+            }
+
+        } else {
+            this.ImeApartmana.setText("Niste uneli validan redni broj apartmana");
+            this.Home.Switch(new PretragaApartmanaLokacija(this.Home));
+        }
     }//GEN-LAST:event_DetaljiActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -39,30 +39,32 @@ public class Apartman {
         return IDApartman;
     }
 
-    public static Integer dohvatiIDApartmana(String Naziv) {
+    /* public static Integer dohvatiIDApartmana(String Naziv) {
 
-        Connection con = DB.connection;
-        Integer ID = 0;
+     Connection con = DB.connection;
+     Integer ID = 0;
 
-        String SQLStm = "SELECT IDApartman FROM Apartman WHERE Naziv = ?";
+     String SQLStm = "SELECT IDApartman FROM Apartman WHERE Naziv = ?";
 
-        PreparedStatement stmt;
-        try {
-            stmt = con.prepareStatement(SQLStm);
+     PreparedStatement stmt;
+     try {
+     stmt = con.prepareStatement(SQLStm);
 
-            stmt.setString(1, Naziv);
+     stmt.setString(1, Naziv);
 
-            ResultSet rezultat = stmt.executeQuery();
-            rezultat.next();
-            ID = rezultat.getInt("IDApartman");
+     ResultSet rezultat = stmt.executeQuery();
+     rezultat.next();
+     if (rezultat != null) {
+     ID = rezultat.getInt("IDApartman");
+     }
 
-        } catch (SQLException ex) {
-            Logger.getLogger(Prodavac.class.getName()).log(Level.SEVERE, null, ex);
-        }
+     } catch (SQLException ex) {
+     Logger.getLogger(Prodavac.class.getName()).log(Level.SEVERE, null, ex);
+     }
 
-        return ID;
-    }
-
+     return ID;
+     }
+     */
     public static Apartman dohvatiApartman(Integer IDApartman) {
 
         Connection con = DB.connection;
@@ -77,9 +79,11 @@ public class Apartman {
             stmt.setInt(1, IDApartman);
 
             ResultSet rezultat = stmt.executeQuery();
-            rezultat.next();
+            
+            if(rezultat.next()){
             apt = new Apartman(rezultat.getInt("IDApartman"), rezultat.getString("Drzava"), rezultat.getString("Grad"), rezultat.getString("UlicaIBroj"), rezultat.getString("Naziv"));
             apt.setOpis(rezultat.getString("Opis"));
+            }
         } catch (SQLException ex) {
             Logger.getLogger(Prodavac.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -143,9 +147,9 @@ public class Apartman {
         }
         return listaApartmana;
     }
-    
-    public static void izmeniApartman(Integer IDApartman, String Naziv, String Opis){
-    
+
+    public static void izmeniApartman(Integer IDApartman, String Naziv, String Opis) {
+
         Connection con = DB.connection;
         Integer ID = 0;
 
@@ -161,11 +165,10 @@ public class Apartman {
 
             stmt.execute();
 
-
         } catch (SQLException ex) {
             Logger.getLogger(Prodavac.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
+
     }
 
     public String getOpis() {
@@ -210,7 +213,7 @@ public class Apartman {
 
     @Override
     public String toString() {
-        return "Apartman{" + "IDApartman=" + IDApartman + ", Drzava=" + Drzava + ", Grad=" + Grad + ", UlicaIBroj=" + UlicaIBroj + ", Naziv=" + Naziv + '}';
+        return "\n" + IDApartman + "." + "NAZIV: " + Naziv + "\nADRESA: " + Drzava + " " + Grad + " " + UlicaIBroj + "\nOPIS: " + Opis;
     }
 
 }

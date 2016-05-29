@@ -43,6 +43,9 @@ public class Odjavljivanje extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
 
+        setMinimumSize(new java.awt.Dimension(1600, 600));
+        setPreferredSize(new java.awt.Dimension(1600, 600));
+
         jLabel1.setText("Dovidjenja !");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -52,14 +55,14 @@ public class Odjavljivanje extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(168, 168, 168)
                 .addComponent(jLabel1)
-                .addContainerGap(168, Short.MAX_VALUE))
+                .addContainerGap(1368, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(141, 141, 141)
                 .addComponent(jLabel1)
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addContainerGap(443, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

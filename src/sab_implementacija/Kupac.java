@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 /**
  *
  * @author Marija
@@ -54,8 +55,9 @@ public class Kupac {
             stmt.setString(1, korisnickoIme);
 
             ResultSet rezultat = stmt.executeQuery();
-            rezultat.next();
+            if(rezultat.next()){
             IDKupac = rezultat.getInt("IDKupac");
+            }
 
         } catch (SQLException ex) {
             Logger.getLogger(Prodavac.class.getName()).log(Level.SEVERE, null, ex);
@@ -95,10 +97,30 @@ public class Kupac {
 
         return informacije;
     }
+    
+    
+     public static Integer mogucaRegistracija(String KorisnickoIme){
+        Connection con = DB.connection;
+       Integer ID = 0;
+
+        CallableStatement cstmt = null;
+        try {
+        cstmt = con.prepareCall("{? = CALL registracijaKupca(?)}");
+        cstmt.registerOutParameter(1, java.sql.Types.INTEGER);
+        cstmt.setString(2, KorisnickoIme);
+        cstmt.execute();
+        ID = cstmt.getInt(1);
+        
+         } catch (SQLException ex) {
+            Logger.getLogger(Prodavac.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return ID;
+    }
 
     public static boolean registracijaKupca(String korisnickoIme, String lozinka, String EMail, String BrojTelefona, String Ime, String Prezime, String BrKreditneKartice) {
         Connection con = DB.connection;
-
+         if(mogucaRegistracija(korisnickoIme) != 0) return false;
         try {
 
             String SQLStm = "INSERT INTO Kupac(BrKreditneKartice,KorisnickoIme,Lozinka, EMail, BrojTelefona, Ime, Prezime) VALUES(?,?,?,?,?,?,?)";

@@ -24,7 +24,7 @@ public class MojProfilProdavac extends javax.swing.JPanel {
     public MojProfilProdavac(SAB_Projekat Home) {
         initComponents();
         this.Home = Home;
-                List<String> informacije = Prodavac.dohvatiProdavca();
+        List<String> informacije = Prodavac.dohvatiProdavca();
         POS.setText(informacije.get(0));
         BrojTelefona.setText(informacije.get(1));
         Email.setText(informacije.get(2));
@@ -62,39 +62,37 @@ public class MojProfilProdavac extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         Izmeni = new javax.swing.JButton();
 
-        KorisnickoIme.setText("jTextField1");
+        setMinimumSize(new java.awt.Dimension(1600, 600));
 
-        BrojTelefona.setText("jTextField2");
         BrojTelefona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BrojTelefonaActionPerformed(evt);
             }
         });
 
-        Ime.setText("jTextField3");
         Ime.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ImeActionPerformed(evt);
             }
         });
 
-        Prezime.setText("jTextField4");
         Prezime.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PrezimeActionPerformed(evt);
             }
         });
 
-        Email.setText("jTextField5");
         Email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EmailActionPerformed(evt);
             }
         });
 
-        Lozinka.setText("jPasswordField1");
-
-        POS.setText("jTextField6");
+        Lozinka.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LozinkaActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Korisnicko ime");
 
@@ -134,16 +132,15 @@ public class MojProfilProdavac extends javax.swing.JPanel {
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Izmeni)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(Email, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Prezime, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Ime, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Lozinka, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(KorisnickoIme, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))
-                        .addComponent(POS, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(BrojTelefona, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(172, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(Email)
+                        .addComponent(Prezime)
+                        .addComponent(Ime)
+                        .addComponent(Lozinka)
+                        .addComponent(KorisnickoIme, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                        .addComponent(POS, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                        .addComponent(BrojTelefona)))
+                .addContainerGap(1287, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,7 +173,7 @@ public class MojProfilProdavac extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(POS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 244, Short.MAX_VALUE)
                 .addComponent(Izmeni)
                 .addGap(48, 48, 48))
         );
@@ -206,6 +203,10 @@ public class MojProfilProdavac extends javax.swing.JPanel {
     private void BrojTelefonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BrojTelefonaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BrojTelefonaActionPerformed
+
+    private void LozinkaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LozinkaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LozinkaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField BrojTelefona;

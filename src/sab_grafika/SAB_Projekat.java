@@ -59,7 +59,6 @@ public class SAB_Projekat extends javax.swing.JFrame {
         MojiApartmani = new javax.swing.JMenuItem();
         MojeRezervacijeProdavac = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
         ApartmaniLokacijaProdavac = new javax.swing.JMenuItem();
         KupacB = new javax.swing.JMenu();
         MojeRezervacijeKupac = new javax.swing.JMenuItem();
@@ -74,6 +73,8 @@ public class SAB_Projekat extends javax.swing.JFrame {
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
         HomePanel.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 153, 153)));
+        HomePanel.setMinimumSize(new java.awt.Dimension(1600, 600));
+        HomePanel.setPreferredSize(new java.awt.Dimension(1600, 600));
 
         label1.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
         label1.setText("SAB_Projekat");
@@ -85,14 +86,14 @@ public class SAB_Projekat extends javax.swing.JFrame {
             .addGroup(HomePanelLayout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(344, Short.MAX_VALUE))
+                .addContainerGap(1287, Short.MAX_VALUE))
         );
         HomePanelLayout.setVerticalGroup(
             HomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HomePanelLayout.createSequentialGroup()
                 .addGap(101, 101, 101)
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addContainerGap(863, Short.MAX_VALUE))
         );
 
         getContentPane().add(HomePanel);
@@ -177,9 +178,6 @@ public class SAB_Projekat extends javax.swing.JFrame {
 
         jMenuItem7.setText("Dodaj apartman");
         ProdavacB.add(jMenuItem7);
-
-        jMenuItem8.setText("Dodaj sobu");
-        ProdavacB.add(jMenuItem8);
 
         ApartmaniLokacijaProdavac.setText("Pretraga ");
         ApartmaniLokacijaProdavac.addActionListener(new java.awt.event.ActionListener() {
@@ -423,9 +421,6 @@ public class SAB_Projekat extends javax.swing.JFrame {
         return jMenuItem7;
     }
 
-    public JMenuItem getjMenuItem8() {
-        return jMenuItem8;
-    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -451,7 +446,6 @@ public class SAB_Projekat extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
     private java.awt.Label label1;
     // End of variables declaration//GEN-END:variables
 }

@@ -28,15 +28,21 @@ public class PregledRezervacijaKupac extends javax.swing.JPanel {
         initComponents();
         this.Home = Home;
 
-        List<Rezervacija> rezervacije = null;
-
-        rezervacije = Kupac.pregledRezervacijaKupac();
+        List<Rezervacija> rezervacije = Kupac.pregledRezervacijaKupac();
 
         String ispis = "";
-        for (int i = 0; i < rezervacije.size(); i++) {
-            ispis += rezervacije.get(i).toString() + "\n";
+
+        if (rezervacije.size()>0) {
+
+            for (int i = 0; i < rezervacije.size(); i++) {
+                ispis += rezervacije.get(i).toString() + "\n";
+            }
+
+        } else {
+            ispis = "Jos uvek nemate rezervacije";
         }
-        this.jTextPane1.setText(Kupac.getID()+ "");        this.jTextPane1.setText(ispis);
+
+        this.jTextPane1.setText(ispis);
     }
 
     /**
@@ -54,16 +60,18 @@ public class PregledRezervacijaKupac extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         Detalji = new javax.swing.JButton();
 
+        setMinimumSize(new java.awt.Dimension(1600, 600));
+        setPreferredSize(new java.awt.Dimension(1600, 600));
+
         jScrollPane1.setViewportView(jTextPane1);
 
-        ImeApartmana.setText("jTextField1");
         ImeApartmana.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ImeApartmanaActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("Naziv apartmana");
+        jLabel3.setText("Unesite redni broj apartmana za kog zelite da vidite rezervacije");
 
         Detalji.setText("Detaljnije");
         Detalji.addActionListener(new java.awt.event.ActionListener() {
@@ -77,37 +85,32 @@ public class PregledRezervacijaKupac extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(46, 46, 46)
-                                .addComponent(ImeApartmana, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(148, 148, 148)
-                                .addComponent(jLabel3)))
-                        .addGap(0, 34, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1)))
+                .addContainerGap()
+                .addComponent(jScrollPane1)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Detalji)
                 .addGap(152, 152, 152))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(223, 223, 223)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ImeApartmana, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addContainerGap(1038, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(ImeApartmana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Detalji)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(ImeApartmana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addGap(35, 35, 35))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -116,9 +119,17 @@ public class PregledRezervacijaKupac extends javax.swing.JPanel {
     }//GEN-LAST:event_ImeApartmanaActionPerformed
 
     private void DetaljiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DetaljiActionPerformed
-        Integer IDApartmana = Apartman.dohvatiIDApartmana(this.ImeApartmana.getText());
-        this.jTextPane1.setText(IDApartmana + "");
-        this.Home.Switch(new DetaljnoApartmanKupac(this.Home, IDApartmana));
+        Integer IDApartmana = Integer.parseInt(this.ImeApartmana.getText());
+        Apartman apt  = Apartman.dohvatiApartman(IDApartmana);
+        
+        if (apt == null) {
+            this.ImeApartmana.setText("Niste uneli validan redni broj apartmana");
+            this.Home.Switch(new PregledRezervacijaKupac(this.Home));
+
+        } else {
+            this.jTextPane1.setText(IDApartmana + "");
+            this.Home.Switch(new DetaljnoApartmanKupac(this.Home, IDApartmana));
+        }
     }//GEN-LAST:event_DetaljiActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

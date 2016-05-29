@@ -18,7 +18,7 @@ import sab_implementacija.Soba;
  *
  * @author Marija
  */
-public class DetaljnoApartmanKupac extends javax.swing.JPanel {
+public class DetaljnoApartmanProdavac extends javax.swing.JPanel {
 
     private SAB_Projekat Home;
     private Integer IDApartman;
@@ -28,7 +28,7 @@ public class DetaljnoApartmanKupac extends javax.swing.JPanel {
     /**
      * Creates new form Apartman
      */
-    public DetaljnoApartmanKupac(SAB_Projekat Home, Integer IDApartman) {
+    public DetaljnoApartmanProdavac(SAB_Projekat Home, Integer IDApartman) {
         initComponents();
         this.Home = Home;
         this.IDApartman = IDApartman;

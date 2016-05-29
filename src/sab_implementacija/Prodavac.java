@@ -35,9 +35,31 @@ public class Prodavac {
     public static void setUlogovan(Boolean ulogovan) {
         Prodavac.ulogovan = ulogovan;
     }
+    
+    public static Integer mogucaRegistracija(String KorisnickoIme){
+        Connection con = DB.connection;
+       Integer ID = 0;
+
+        CallableStatement cstmt = null;
+        try {
+        cstmt = con.prepareCall("{? = CALL registracijaProdavca(?)}");
+        cstmt.registerOutParameter(1, java.sql.Types.INTEGER);
+        cstmt.setString(2, KorisnickoIme);
+        cstmt.execute();
+        ID = cstmt.getInt(1);
+        
+         } catch (SQLException ex) {
+            Logger.getLogger(Prodavac.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return ID;
+    }
 
     public static boolean registracijaProdavca(String korisnickoIme, String lozinka, String EMail, String BrojTelefona, String Ime, String Prezime, String POS) {
         Connection con = DB.connection;
+        if (mogucaRegistracija(korisnickoIme) != 0) {
+            return false;
+        }
 
         try {
 
@@ -126,8 +148,9 @@ public class Prodavac {
             stmt.setString(1, korisnickoIme);
 
             ResultSet rezultat = stmt.executeQuery();
-            rezultat.next();
+           if( rezultat.next()){
             IDProdavac = rezultat.getInt("IDProdavac");
+           }
 
         } catch (SQLException ex) {
             Logger.getLogger(Prodavac.class.getName()).log(Level.SEVERE, null, ex);
@@ -135,8 +158,7 @@ public class Prodavac {
 
         return IDProdavac;
     }
-    
-    
+
     public static List<String> dohvatiProdavca() {
         List<String> informacije = new LinkedList<String>();
         Connection con = DB.connection;
@@ -149,22 +171,19 @@ public class Prodavac {
 
             while (rezultat.next()) {
                 informacije.add(rezultat.getString("POS"));
-                  informacije.add(rezultat.getString("BrojTelefona"));
-                   informacije.add(rezultat.getString("EMail"));
+                informacije.add(rezultat.getString("BrojTelefona"));
+                informacije.add(rezultat.getString("EMail"));
                 informacije.add(rezultat.getString("KorisnickoIme"));
                 informacije.add(rezultat.getString("Lozinka"));
-              
-               
+
                 informacije.add(rezultat.getString("Ime"));
                 informacije.add(rezultat.getString("Prezime"));
-                
 
             }
 
         } catch (SQLException ex) {
             Logger.getLogger(Prodavac.class.getName()).log(Level.SEVERE, null, ex);
         }
-      
 
         return informacije;
     }
