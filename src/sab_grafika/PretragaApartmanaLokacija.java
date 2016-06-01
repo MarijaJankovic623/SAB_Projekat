@@ -136,7 +136,7 @@ public class PretragaApartmanaLokacija extends javax.swing.JPanel {
     private void PretraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PretraziActionPerformed
         List<Apartman> apartmani = null;
 
-        if (this.Grad.getText() == "") {
+        if (this.Grad.getText() == null) {
             apartmani = Apartman.pregledApartmanaDrzava(this.Drzava.getText());
         } else {
             apartmani = Apartman.pregledApartmanaDrzavaGrad(this.Drzava.getText(), this.Grad.getText());

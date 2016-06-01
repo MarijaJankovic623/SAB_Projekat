@@ -143,7 +143,9 @@ public class RezervisanjeSobe extends javax.swing.JPanel {
         this.Do = formatter.format(this.VremeDo.getDate());
 
         List<Soba> sobe = Soba.slobodneSobe(IDApartman, Od, Do);
-        String ispis = apt.toString();
+        String ispis = "";
+        if(sobe.size()== 0) ispis = "Nema slobodnih soba za zeljeni apartman";
+        else  ispis = apt.toString() + "\n\n\n";
         for (int i = 0; i < sobe.size(); i++) {
             ispis += sobe.get(i).toString() + "\n";
         }

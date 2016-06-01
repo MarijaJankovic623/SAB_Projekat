@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -171,12 +172,12 @@ public class Kupac {
         return true;
     }
 
-    public static boolean uredjivanjePodatakaKupca(String korisnickoIme, String lozinka, String EMail, String BrojTelefona, String Ime, String Prezime, String BrKreditneKartice) {
+    public static boolean uredjivanjePodatakaKupca(String lozinka, String EMail, String BrojTelefona, String Ime, String Prezime, String BrKreditneKartice) {
         Connection con = DB.connection;
 
         try {
 
-            String SQLStm = "UPDATE  Kupac SET BrKreditneKartice =? ,Lozinka =? , EMail =? , BrojTelefona=? , Ime=? , Prezime=?, KorisnickoIme =? WHERE IDKupac =? ";
+            String SQLStm = "UPDATE  Kupac SET BrKreditneKartice =? ,Lozinka =? , EMail =? , BrojTelefona=? , Ime=? , Prezime=? WHERE IDKupac =? ";
 
             PreparedStatement stmt = con.prepareStatement(SQLStm);
 
@@ -186,8 +187,7 @@ public class Kupac {
             stmt.setString(4, BrojTelefona);
             stmt.setString(5, Ime);
             stmt.setString(6, Prezime);
-            stmt.setString(7, korisnickoIme);
-            stmt.setInt(8, ID);
+            stmt.setInt(7, ID);
 
             stmt.execute();
 

@@ -28,9 +28,10 @@ public class MojProfilProdavac extends javax.swing.JPanel {
         POS.setText(informacije.get(0));
         BrojTelefona.setText(informacije.get(1));
         Email.setText(informacije.get(2));
-        Ime.setText(informacije.get(3));
-        KorisnickoIme.setText(informacije.get(4));
-        Lozinka.setText(informacije.get(5));
+
+        KorisnickoIme.setText(informacije.get(3));
+        Lozinka.setText(informacije.get(4));
+                Ime.setText(informacije.get(5));
         Prezime.setText(informacije.get(6));
         
         
@@ -181,7 +182,7 @@ public class MojProfilProdavac extends javax.swing.JPanel {
 
     private void IzmeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IzmeniActionPerformed
 
-        if (Prodavac.uredjivanjePodatakaProdavca(this.KorisnickoIme.getText(), this.Lozinka.getText(), this.Email.getText(), this.BrojTelefona.getText(), this.Ime.getText(), this.Prezime.getText(), this.POS.getText())) {
+        if (Prodavac.uredjivanjePodatakaProdavca( this.Lozinka.getText(), this.Email.getText(), this.BrojTelefona.getText(), this.Ime.getText(), this.Prezime.getText(), this.POS.getText())) {
             this.Home.Switch(new PretragaApartmanaLokacija(this.Home));
         } else {
             this.Home.Switch(new MojProfilProdavac(this.Home));

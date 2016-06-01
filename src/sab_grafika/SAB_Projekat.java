@@ -58,7 +58,7 @@ public class SAB_Projekat extends javax.swing.JFrame {
         ProdavacB = new javax.swing.JMenu();
         MojiApartmani = new javax.swing.JMenuItem();
         MojeRezervacijeProdavac = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        DodajApartman = new javax.swing.JMenuItem();
         ApartmaniLokacijaProdavac = new javax.swing.JMenuItem();
         KupacB = new javax.swing.JMenu();
         MojeRezervacijeKupac = new javax.swing.JMenuItem();
@@ -176,8 +176,13 @@ public class SAB_Projekat extends javax.swing.JFrame {
         });
         ProdavacB.add(MojeRezervacijeProdavac);
 
-        jMenuItem7.setText("Dodaj apartman");
-        ProdavacB.add(jMenuItem7);
+        DodajApartman.setText("Dodaj apartman");
+        DodajApartman.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DodajApartmanActionPerformed(evt);
+            }
+        });
+        ProdavacB.add(DodajApartman);
 
         ApartmaniLokacijaProdavac.setText("Pretraga ");
         ApartmaniLokacijaProdavac.addActionListener(new java.awt.event.ActionListener() {
@@ -278,6 +283,10 @@ public class SAB_Projekat extends javax.swing.JFrame {
     private void MojeRezervacijeKupacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MojeRezervacijeKupacActionPerformed
         this.Switch(new PregledRezervacijaKupac(this));
     }//GEN-LAST:event_MojeRezervacijeKupacActionPerformed
+
+    private void DodajApartmanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DodajApartmanActionPerformed
+       this.Switch(new DodajApartman(this));
+    }//GEN-LAST:event_DodajApartmanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -418,7 +427,7 @@ public class SAB_Projekat extends javax.swing.JFrame {
     }
 
     public JMenuItem getjMenuItem7() {
-        return jMenuItem7;
+        return DodajApartman;
     }
 
 
@@ -426,6 +435,7 @@ public class SAB_Projekat extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem ApartmaniLokacijaKupac;
     private javax.swing.JMenuItem ApartmaniLokacijaProdavac;
+    private javax.swing.JMenuItem DodajApartman;
     private javax.swing.JPanel HomePanel;
     private javax.swing.JMenu KupacB;
     private javax.swing.JMenu Login;
@@ -445,7 +455,6 @@ public class SAB_Projekat extends javax.swing.JFrame {
     private javax.swing.JMenuItem RegistracijaProdavac;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem7;
     private java.awt.Label label1;
     // End of variables declaration//GEN-END:variables
 }

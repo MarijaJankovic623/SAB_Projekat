@@ -13,12 +13,10 @@ import sab_implementacija.*;
 /**
  *
  * @author Marija
- */
+ 
 public class SAB_Projekat {
 
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String[] args) throws SQLException {
         // TODO code application logic here
         DB base = new DB();
@@ -39,7 +37,11 @@ public class SAB_Projekat {
         //Prodavac.RezervisiSobu(2, 2, "2013-03-02", "2013-04-02");Prodavac.RezervisiSobu(2, 2, "2013-03-02", "2013-04-02");
         //System.out.println( Prodavac.pregledRezervacijaProdavac(2));
         //System.out.println(Kupac.pregledRezervacijaKupac(2));
+        
+        
 
     }
 
+
 }
+*/

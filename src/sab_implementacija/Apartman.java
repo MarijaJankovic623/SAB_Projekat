@@ -39,7 +39,7 @@ public class Apartman {
         return IDApartman;
     }
 
-    /* public static Integer dohvatiIDApartmana(String Naziv) {
+    public static Integer dohvatiIDApartmana(String Naziv) {
 
      Connection con = DB.connection;
      Integer ID = 0;
@@ -64,7 +64,33 @@ public class Apartman {
 
      return ID;
      }
-     */
+    
+    public static boolean dodajApartman(String Naziv, String Drzava, String Grad, String UlicaIBroj, String Opis,Integer IDProdavac) {
+        Connection con = DB.connection;
+
+
+        try {
+
+            String SQLStm = "INSERT INTO Apartman(Naziv,Drzava,Grad, UlicaIBroj, Opis, IDProdavac) VALUES(?,?,?,?,?,?)";
+
+            PreparedStatement stmt = con.prepareStatement(SQLStm);
+
+            stmt.setString(1, Naziv);
+            stmt.setString(2, Drzava);
+            stmt.setString(3, Grad);
+            stmt.setString(4, UlicaIBroj);
+            stmt.setString(5, Opis);
+            stmt.setInt(6, IDProdavac);
+
+
+            stmt.execute();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Prodavac.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return true;
+    }
+    
     public static Apartman dohvatiApartman(Integer IDApartman) {
 
         Connection con = DB.connection;

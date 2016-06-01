@@ -32,7 +32,7 @@ public class UredjivanjeApartmana extends javax.swing.JPanel {
         String ispis = "Sobe:\n";
         
 
-        ispis += Soba.sobeApartman(IDApartman);
+        ispis += "\n"+ Soba.sobeApartman(IDApartman);
 
         this.SobeApartman.setText(ispis);
 
@@ -49,13 +49,11 @@ public class UredjivanjeApartmana extends javax.swing.JPanel {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
         NazivApartmana = new javax.swing.JTextField();
-        RedniBroj = new javax.swing.JTextField();
         BrojOsoba = new javax.swing.JTextField();
         RBSobe = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         SobeApartman = new javax.swing.JEditorPane();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         Dodaj = new javax.swing.JButton();
@@ -92,8 +90,6 @@ public class UredjivanjeApartmana extends javax.swing.JPanel {
         jScrollPane1.setViewportView(SobeApartman);
 
         jLabel1.setText(" Naziv apartmana:");
-
-        jLabel2.setText("Redni broj:");
 
         jLabel3.setText("Opis:");
 
@@ -173,11 +169,9 @@ public class UredjivanjeApartmana extends javax.swing.JPanel {
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabel4))
                         .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(RedniBroj)
                             .addComponent(OpisSobe)
                             .addComponent(BrojOsoba)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -196,7 +190,7 @@ public class UredjivanjeApartmana extends javax.swing.JPanel {
                                 .addComponent(Zakljucaj)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Otkljucaj)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 976, Short.MAX_VALUE)))
                 .addGap(29, 29, 29))
         );
         layout.setVerticalGroup(
@@ -222,22 +216,18 @@ public class UredjivanjeApartmana extends javax.swing.JPanel {
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Dodaj)
                             .addComponent(Obrisi)
                             .addComponent(Izmeni)
                             .addComponent(Zakljucaj)
                             .addComponent(Otkljucaj))
-                        .addGap(52, 52, 52)))
+                        .addGap(46, 46, 46)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(RedniBroj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(BrojOsoba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(BrojOsoba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(OpisSobe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -264,7 +254,7 @@ public class UredjivanjeApartmana extends javax.swing.JPanel {
         if (IDSoba != 0) {
             Soba.zakljucaj(IDSoba);
 
-            ispis += Soba.sobeApartman(IDApartman);
+            ispis += "\n"+Soba.sobeApartman(IDApartman);
         } else {
             ispis = "Niste uneli validan redni broj sobe ";
         }
@@ -279,7 +269,7 @@ public class UredjivanjeApartmana extends javax.swing.JPanel {
         if (IDSoba != 0) {
             Soba.otkljucaj(IDSoba);
 
-            ispis += Soba.sobeApartman(IDApartman);
+            ispis += "\n"+Soba.sobeApartman(IDApartman);
         } else {
             ispis = "Niste uneli validan redni broj sobe ";
         }
@@ -289,7 +279,7 @@ public class UredjivanjeApartmana extends javax.swing.JPanel {
 
     private void DodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DodajActionPerformed
 
-        Soba.dodajSobu(IDApartman, Integer.parseInt(this.RedniBroj.getText()), Integer.parseInt(this.BrojOsoba.getText()), this.OpisSobe.getText());
+        Soba.dodajSobu(IDApartman, Integer.parseInt(this.RBSobe.getText()), Integer.parseInt(this.BrojOsoba.getText()), this.OpisSobe.getText());
         String ispis = "Sobe:\n";
 
         ispis += Soba.sobeApartman(IDApartman);
@@ -313,11 +303,12 @@ public class UredjivanjeApartmana extends javax.swing.JPanel {
     }//GEN-LAST:event_ObrisiActionPerformed
 
     private void IzmeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IzmeniActionPerformed
-
+        
+        
         Integer IDSoba = Soba.dohvatiIDSobe(Integer.parseInt(this.RBSobe.getText()), IDApartman);
         String ispis = "Sobe:\n";
         if (IDSoba != 0) {
-            Soba.izmeniSobu(IDSoba, Integer.parseInt(this.RedniBroj.getText()), Integer.parseInt(this.BrojOsoba.getText()), this.OpisSobe.getText());
+            Soba.izmeniSobu(IDSoba,Integer.parseInt(this.BrojOsoba.getText()), this.OpisSobe.getText(),IDApartman);
 
             ispis += Soba.sobeApartman(IDApartman);
 
@@ -340,11 +331,9 @@ public class UredjivanjeApartmana extends javax.swing.JPanel {
     private javax.swing.JTextField OpisSobe;
     private javax.swing.JButton Otkljucaj;
     private javax.swing.JTextField RBSobe;
-    private javax.swing.JTextField RedniBroj;
     private javax.swing.JEditorPane SobeApartman;
     private javax.swing.JButton Zakljucaj;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

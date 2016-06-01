@@ -37,19 +37,22 @@ public class Soba {
         this.zakljucana = 0;
     }
 
-    public static void izmeniSobu(Integer IDSoba, Integer RDB, Integer BrO, String Opis) {
+    public static void izmeniSobu(Integer IDSoba,Integer BrO, String Opis,Integer IDApartman) {
         Connection con = DB.connection;
+        
 
-        String SQLStm = "UPDATE Soba SET BrOsoba = ?, RdBroj = ?, Opis = ? WHERE IDSoba = ?";
+
+
+        String SQLStm = "UPDATE Soba SET BrOsoba = ?,  Opis = ? WHERE IDSoba = ?";
 
         PreparedStatement stmt;
         try {
             stmt = con.prepareStatement(SQLStm);
 
             stmt.setInt(1, BrO);
-            stmt.setInt(2, RDB);
-            stmt.setString(3, Opis);
-            stmt.setInt(4, IDSoba);
+
+            stmt.setString(2, Opis);
+            stmt.setInt(3, IDSoba);
 
             stmt.execute();
 
@@ -77,15 +80,16 @@ public class Soba {
 
     }
 
-    public static Integer moguceDodavanje(Integer RedniBroj) {
+    public static Integer moguceDodavanje(Integer RedniBroj,Integer IDApartman) {
         Connection con = DB.connection;
         Integer ID = 0;
 
         CallableStatement cstmt = null;
         try {
-            cstmt = con.prepareCall("{? = CALL novaSoba(?)}");
+            cstmt = con.prepareCall("{? = CALL novaSoba(?,?)}");
             cstmt.registerOutParameter(1, java.sql.Types.INTEGER);
             cstmt.setInt(2, RedniBroj);
+            cstmt.setInt(3, IDApartman);
             cstmt.execute();
             ID = cstmt.getInt(1);
 
@@ -96,9 +100,9 @@ public class Soba {
         return ID;
     }
 
-    public static boolean dodajSobu(Integer IDApartman, Integer BrO, Integer RDB, String Opis) {
+    public static boolean dodajSobu(Integer IDApartman,  Integer RDB,Integer BrO, String Opis) {
         Connection con = DB.connection;
-        if (moguceDodavanje(RDB) != 0) {
+        if (moguceDodavanje(RDB,IDApartman) != 0) {
             return false;
         }
 
@@ -306,7 +310,7 @@ public class Soba {
         if (zakljucana == 0) {
             zakljucanost = "Otkljucana";
         }
-        return "\n" + RdBr + "REDNI BROJ SOBE" + zakljucanost + "\nBROJ OSOBA U SOBI: " + BrOsoba + "\nOPIS: " + Opis;
+        return "\n"  + "REDNI BROJ SOBE: " + + RdBr + "    "+zakljucanost + "\nBROJ OSOBA U SOBI: " + BrOsoba + "\nOPIS: " + Opis;
 
     }
 

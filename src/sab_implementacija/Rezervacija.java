@@ -107,7 +107,7 @@ public class Rezervacija {
 
     @Override
     public String toString() {
-        return "\n" + Ime + " " + Prezime + " " + Username + "\nEMAIL=" + Email + ", BROJ TELEFONA=" + BrojTelefona + "\n" + IDApartman + "." + "NAZIV: " + NazivApartmana + "REDNI BROJ SOBE" + RdBRSobe + "\nADRESA: " + UlicaIBroj;
+        return "\n" + Ime + " " + Prezime + " " + Username + "\nEMAIL= " + Email + ", BROJ TELEFONA= " + BrojTelefona + "\n" + IDApartman + "." + "NAZIV: " + NazivApartmana + "REDNI BROJ SOBE " + RdBRSobe + "\nADRESA: " + UlicaIBroj;
     }
 
 }

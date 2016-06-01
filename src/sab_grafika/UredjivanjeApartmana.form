@@ -72,11 +72,9 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="RedniBroj" max="32767" attributes="0"/>
                           <Component id="OpisSobe" max="32767" attributes="0"/>
                           <Component id="BrojOsoba" max="32767" attributes="0"/>
                       </Group>
@@ -99,7 +97,7 @@
                               <Component id="Otkljucaj" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="976" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="29" pref="29" max="-2" attributes="0"/>
@@ -132,7 +130,7 @@
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <EmptySpace pref="84" max="32767" attributes="0"/>
+                      <EmptySpace pref="90" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="Dodaj" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Obrisi" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -140,19 +138,14 @@
                           <Component id="Zakljucaj" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Otkljucaj" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="RedniBroj" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="BrojOsoba" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="OpisSobe" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel3" alignment="3" min="-2" pref="10" max="-2" attributes="0"/>
@@ -164,8 +157,6 @@
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JTextField" name="NazivApartmana">
-    </Component>
-    <Component class="javax.swing.JTextField" name="RedniBroj">
     </Component>
     <Component class="javax.swing.JTextField" name="BrojOsoba">
     </Component>
@@ -188,11 +179,6 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="text" type="java.lang.String" value=" Naziv apartmana:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Redni broj:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">

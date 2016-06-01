@@ -108,12 +108,12 @@ public class Prodavac {
         return true;
     }
 
-    public static boolean uredjivanjePodatakaProdavca(String korisnickoIme, String lozinka, String EMail, String BrojTelefona, String Ime, String Prezime, String POS) {
+    public static boolean uredjivanjePodatakaProdavca(String lozinka, String EMail, String BrojTelefona, String Ime, String Prezime, String POS) {
         Connection con = DB.connection;
 
         try {
 
-            String SQLStm = "UPDATE  Prodavac SET  POS =? ,Lozinka =? , EMail =? , BrojTelefona=? , Ime=? , Prezime=?, korisnickoIme = ? , WHERE IDProdavac =? ";
+            String SQLStm = "UPDATE  Prodavac SET  POS =? ,Lozinka =? , EMail =? , BrojTelefona=? , Ime=? , Prezime=? WHERE IDProdavac =? ";
 
             PreparedStatement stmt = con.prepareStatement(SQLStm);
 
@@ -123,8 +123,7 @@ public class Prodavac {
             stmt.setString(4, BrojTelefona);
             stmt.setString(5, Ime);
             stmt.setString(6, Prezime);
-            stmt.setString(7, korisnickoIme);
-            stmt.setInt(8, ID);
+            stmt.setInt(7, ID);
 
             stmt.execute();
 
