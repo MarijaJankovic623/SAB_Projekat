@@ -5,6 +5,18 @@
  */
 package sab_implementacija;
 
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Marija
@@ -31,6 +43,27 @@ public class Rezervacija {
         this.NazivApartmana = NazivApartmana;
         this.UlicaIBroj = UlicaIBroj;
         this.IDApartman = IDApartman;
+    }
+
+    public static void brisanjeIsteklihRezervacija() {
+        try {
+
+            Date now = new Date();
+            Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+            String TrenutnoVreme = formatter.format(now);
+            Connection con = DB.connection;
+
+            CallableStatement cstmt = con.prepareCall("{CALL istekleRezervacije(?)}");
+
+            cstmt.setString(1, TrenutnoVreme);
+
+           cstmt.execute();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Prodavac.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     public Integer getRdBRSobe() {

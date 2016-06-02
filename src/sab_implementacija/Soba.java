@@ -37,11 +37,34 @@ public class Soba {
         this.zakljucana = 0;
     }
 
-    public static void izmeniSobu(Integer IDSoba,Integer BrO, String Opis,Integer IDApartman) {
+    public static boolean proveraMenjanjeBrisanje(Integer IDSoba) {
         Connection con = DB.connection;
+
+        PreparedStatement stmt;
+
+        String SQLStm = "SELECT * FROM Rezervacija WHERE IDSoba = ? ";
+
+        try {
+            stmt = con.prepareStatement(SQLStm);
+
+            stmt.setInt(1, IDSoba);
+
+            ResultSet rezultat = stmt.executeQuery();
+            while (rezultat.next()) {
+                return false;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Prodavac.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return true;
+
+    }
+
+    public static void izmeniSobu(Integer IDSoba, Integer BrO, String Opis, Integer IDApartman) {
         
-
-
+        if(!proveraMenjanjeBrisanje( IDSoba))return;
+        Connection con = DB.connection;
 
         String SQLStm = "UPDATE Soba SET BrOsoba = ?,  Opis = ? WHERE IDSoba = ?";
 
@@ -63,6 +86,7 @@ public class Soba {
     }
 
     public static void obrisiSobu(Integer IDSoba) {
+         if(!proveraMenjanjeBrisanje( IDSoba))return;
         Connection con = DB.connection;
 
         String SQLStm = "DELETE  FROM Soba WHERE IDSoba = ?";
@@ -80,7 +104,7 @@ public class Soba {
 
     }
 
-    public static Integer moguceDodavanje(Integer RedniBroj,Integer IDApartman) {
+    public static Integer moguceDodavanje(Integer RedniBroj, Integer IDApartman) {
         Connection con = DB.connection;
         Integer ID = 0;
 
@@ -100,9 +124,9 @@ public class Soba {
         return ID;
     }
 
-    public static boolean dodajSobu(Integer IDApartman,  Integer RDB,Integer BrO, String Opis) {
+    public static boolean dodajSobu(Integer IDApartman, Integer RDB, Integer BrO, String Opis) {
         Connection con = DB.connection;
-        if (moguceDodavanje(RDB,IDApartman) != 0) {
+        if (moguceDodavanje(RDB, IDApartman) != 0) {
             return false;
         }
 
@@ -310,7 +334,7 @@ public class Soba {
         if (zakljucana == 0) {
             zakljucanost = "Otkljucana";
         }
-        return "\n"  + "REDNI BROJ SOBE: " + + RdBr + "    "+zakljucanost + "\nBROJ OSOBA U SOBI: " + BrOsoba + "\nOPIS: " + Opis;
+        return "\n" + "REDNI BROJ SOBE: " + +RdBr + "    " + zakljucanost + "\nBROJ OSOBA U SOBI: " + BrOsoba + "\nOPIS: " + Opis;
 
     }
 

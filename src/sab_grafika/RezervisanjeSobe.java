@@ -8,6 +8,7 @@ package sab_grafika;
 import java.awt.BorderLayout;
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.swing.ScrollPaneLayout;
 import sab_implementacija.Apartman;
@@ -138,14 +139,28 @@ public class RezervisanjeSobe extends javax.swing.JPanel {
 
     private void PretraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PretraziActionPerformed
         Apartman apt = Apartman.dohvatiApartman(IDApartman);
+
+        Date now = new Date();
         Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        this.Od = formatter.format(this.VremeOd.getDate());
-        this.Do = formatter.format(this.VremeDo.getDate());
+
+        Date VremeOdVreme = this.VremeOd.getDate();
+        Date VremeDoVreme = this.VremeDo.getDate();
+
+        if (now.after(VremeOdVreme) || now.after(VremeDoVreme) || VremeOdVreme.after(VremeDoVreme)) {
+             this.jTextPane1.setText("Niste uneli korektno vreme");
+             
+            return ;
+        }
+        this.Od = formatter.format(VremeOdVreme);
+        this.Do = formatter.format(VremeDoVreme);
 
         List<Soba> sobe = Soba.slobodneSobe(IDApartman, Od, Do);
         String ispis = "";
-        if(sobe.size()== 0) ispis = "Nema slobodnih soba za zeljeni apartman";
-        else  ispis = apt.toString() + "\n\n\n";
+        if (sobe.size() == 0) {
+            ispis = "Nema slobodnih soba za zeljeni apartman u zeljenom terminu";
+        } else {
+            ispis = apt.toString() + "\n\n\n";
+        }
         for (int i = 0; i < sobe.size(); i++) {
             ispis += sobe.get(i).toString() + "\n";
         }
@@ -156,6 +171,7 @@ public class RezervisanjeSobe extends javax.swing.JPanel {
     }//GEN-LAST:event_PretraziActionPerformed
 
     private void RezervisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RezervisiActionPerformed
+         if(this.RBSobe.getText().isEmpty()) return;
         Integer IDSoba = Soba.dohvatiIDSobe(Integer.parseInt(this.RBSobe.getText()), IDApartman);
         if (IDSoba != 0) {
             Soba.rezervisiSobu(IDSoba, Kupac.getID(), Od, Do);

@@ -114,6 +114,10 @@ public class PretragaApartmanaProdavac extends javax.swing.JPanel {
     }//GEN-LAST:event_ImeApartmanaActionPerformed
 
     private void DetaljiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DetaljiActionPerformed
+        if (this.ImeApartmana.getText().isEmpty()) {
+            return;
+        }
+        
         Integer IDApartmana = Integer.parseInt(this.ImeApartmana.getText());
         Apartman apt  = Apartman.dohvatiApartman(IDApartmana);
         

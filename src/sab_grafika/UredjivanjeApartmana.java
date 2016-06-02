@@ -236,6 +236,8 @@ public class UredjivanjeApartmana extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void IzmeniApartmanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IzmeniApartmanActionPerformed
+          if(this.RBSobe.getText().isEmpty()) return;
+        
         Apartman.izmeniApartman(IDApartman, this.NazivApartmana.getText(), this.OpisApartmana.getText());
         Apartman apt = Apartman.dohvatiApartman(IDApartman);
         this.NazivApartmana.setText(apt.getNaziv());
@@ -249,6 +251,8 @@ public class UredjivanjeApartmana extends javax.swing.JPanel {
     }//GEN-LAST:event_RBSobeActionPerformed
 
     private void ZakljucajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ZakljucajActionPerformed
+         if(this.RBSobe.getText().isEmpty()) return;
+        
         Integer IDSoba = Soba.dohvatiIDSobe(Integer.parseInt(this.RBSobe.getText()), IDApartman);
         String ispis = "Sobe:\n";
         if (IDSoba != 0) {
@@ -264,6 +268,8 @@ public class UredjivanjeApartmana extends javax.swing.JPanel {
 
     private void OtkljucajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OtkljucajActionPerformed
 
+           if(this.RBSobe.getText().isEmpty()) return;
+        
         Integer IDSoba = Soba.dohvatiIDSobe(Integer.parseInt(this.RBSobe.getText()), IDApartman);
         String ispis = "Sobe:\n";
         if (IDSoba != 0) {
@@ -279,6 +285,8 @@ public class UredjivanjeApartmana extends javax.swing.JPanel {
 
     private void DodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DodajActionPerformed
 
+            if(this.RBSobe.getText().isEmpty() ||  this.BrojOsoba.getText().isEmpty()) return;
+        
         Soba.dodajSobu(IDApartman, Integer.parseInt(this.RBSobe.getText()), Integer.parseInt(this.BrojOsoba.getText()), this.OpisSobe.getText());
         String ispis = "Sobe:\n";
 
@@ -289,6 +297,8 @@ public class UredjivanjeApartmana extends javax.swing.JPanel {
 
     private void ObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ObrisiActionPerformed
 
+           if(this.RBSobe.getText().isEmpty()) return;
+        
         Integer IDSoba = Soba.dohvatiIDSobe(Integer.parseInt(this.RBSobe.getText()), IDApartman);
         String ispis = "Sobe:\n";
         if (IDSoba != 0) {
@@ -304,6 +314,7 @@ public class UredjivanjeApartmana extends javax.swing.JPanel {
 
     private void IzmeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IzmeniActionPerformed
         
+           if(this.RBSobe.getText().isEmpty() ||  this.BrojOsoba.getText().isEmpty()) return;
         
         Integer IDSoba = Soba.dohvatiIDSobe(Integer.parseInt(this.RBSobe.getText()), IDApartman);
         String ispis = "Sobe:\n";

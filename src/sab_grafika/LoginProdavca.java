@@ -7,6 +7,7 @@ package sab_grafika;
 
 import sab_implementacija.Kupac;
 import sab_implementacija.Prodavac;
+import sab_implementacija.Rezervacija;
 
 /**
  *
@@ -90,6 +91,10 @@ public class LoginProdavca extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void PrijavaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrijavaActionPerformed
+           Rezervacija.brisanjeIsteklihRezervacija();
+        
+        
+        
         if (Prodavac.prijavljivanjeProdavca(this.KorisnickoIme.getText(), this.Lozinka.getText())) {
             Prodavac.setID(Prodavac.dohvatiIDProdavca(this.KorisnickoIme.getText()));
             Prodavac.setUlogovan(true);
